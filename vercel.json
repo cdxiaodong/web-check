@@ -9,14 +9,14 @@
   "functions": {
     "api/*.js": {
       "maxDuration": 10,
-      "runtime": "nodejs20.x"  // 指定支持的运行时
+      "runtime": "nodejs20.x"
     }
   },
   "env": {
     "PLATFORM": "vercel",
     "CI": "false",
     "CHROME_PATH": "/usr/bin/chromium",
-    "NODE_VERSION": "20.x",  // 与 runtime 一致
+    "NODE_VERSION": "20.x",
     "GOOGLE_CLOUD_API_KEY": "",
     "BUILT_WITH_API_KEY": "",
     "REACT_APP_SHODAN_API_KEY": "",
