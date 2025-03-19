@@ -1,5 +1,15 @@
 {
   "version": 2,
+  "builds": [
+    {
+      "src": "dist/server/**",
+      "use": "@astrojs/vercel"
+    },
+    {
+      "src": "api/*.js",
+      "use": "@vercel/node"
+    }
+  ],
   "routes": [
     {
       "src": "/api/(.*)",
@@ -8,14 +18,15 @@
   ],
   "functions": {
     "api/*.js": {
-      "maxDuration": 10
+      "maxDuration": 10,
+      "runtime": "nodejs20.x"
     }
   },
   "env": {
     "PLATFORM": "vercel",
     "CI": "false",
     "CHROME_PATH": "/usr/bin/chromium",
-    "NODE_VERSION": "21.x",
+    "NODE_VERSION": "20.x",
     "GOOGLE_CLOUD_API_KEY": "",
     "BUILT_WITH_API_KEY": "",
     "REACT_APP_SHODAN_API_KEY": "",
