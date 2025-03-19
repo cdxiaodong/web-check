@@ -1,66 +1,64 @@
 <h1 align="center">Web-Check</h1>
 
-
 <p align="center">
 <img src="https://i.ibb.co/q1gZN2p/web-check-logo.png" width="96" /><br />
-<b><i>Comprehensive, on-demand open source intelligence for any website</i></b>
+<b><i>为任何网站提供全面、按需的开源情报</i></b>
 <br />
 <b>🌐 <a href="https://web-check.xyz/">web-check.xyz</a></b><br />
-
 </p>
 
 ---
 <p align="center">
-  <sup>Kindly supported by:</sup><br>
+  <sup>感谢以下支持:</sup><br>
 <a href="https://terminaltrove.com/?utm_campaign=github&utm_medium=referral&utm_content=web-check&utm_source=wcgh">
   <img src="https://i.ibb.co/8jrrcZ0/IMG-7210.jpg" width="300" alt="Terminal Trove">
   <br>
-  <strong>The $HOME of all things in the terminal.</strong>
+  <strong>终端所有事物的家园。</strong>
 </a>
 <br>
 <a href="https://terminaltrove.com/newsletter?utm_campaign=github&utm_medium=referral&utm_content=web-check&utm_source=wcgh">
-  <sub>Find your next CLI / TUI tool and more at Terminal Trove,</sub>
+  <sub>在 Terminal Trove 找到您的下一个 CLI / TUI 工具及其他，</sub>
   <br>
-  <sup>Get updates on new tools on our newsletter.</sup>
+  <sup>通过我们的newsletter获取新工具的更新。</sup>
 </a>
 </p>
 
 ---
 
-#### Contents
+#### 目录
 
-- **[About](#about)**
-  - [Screenshot](#screenshot)
-  - [Live Demo](#live-demo)
-  - [Mirror](#mirror)
-  - [Features](#features)
-- **[Usage](#usage)**
-  - [Deployment](#deployment)
-    - [Option#1: Netlify](#deploying---option-1-netlify)
-    - [Option#2: Vercel](#deploying---option-2-vercel)
-    - [Option#3: Docker](#deploying---option-3-docker)
-    - [Option#4: Source](#deploying---option-4-from-source)
-  - [Configuration Options](#configuring)
-  - [Developer Setup](#developing)
-- **[Community](#community)**
-  - [Contributing](#contributing)
-  - [Bugs](#reporting-bugs)
-  - [Support](#supporting)
-- **[License](#license)**
+- **[关于](#about)**
+  - [截图](#screenshot)
+  - [实时演示](#live-demo)
+  - [镜像](#mirror)
+  - [功能](#features)
+- **[使用方法](#usage)**
+  - [部署](#deployment)
+    - [选项#1: Netlify](#deploying---option-1-netlify)
+    - [选项#2: Vercel](#deploying---option-2-vercel)
+    - [选项#3: Docker](#deploying---option-3-docker)
+    - [选项#4: 从源代码](#deploying---option-4-from-source)
+  - [配置选项](#configuring)
+  - [开发者设置](#developing)
+- **[社区](#community)**
+  - [贡献](#contributing)
+  - [报告错误](#reporting-bugs)
+  - [支持](#supporting)
+- **[许可证](#license)**
 
 ---
 
-## About
-Get an insight into the inner-workings of a given website: uncover potential attack vectors, analyse server architecture, view security configurations, and learn what technologies a site is using.
+## 关于
+深入了解给定网站的内部运作：发现潜在的攻击向量，分析服务器架构，查看安全配置，并了解网站使用的技术。
 
-Currently the dashboard will show: IP info, SSL chain, DNS records, cookies, headers, domain info, search crawl rules, page map, server location, redirect ledger, open ports, traceroute, DNS security extensions, site performance, trackers, associated hostnames, carbon footprint. Stay tuned, as I'll add more soon!
+当前仪表板将显示：IP信息、SSL链、DNS记录、Cookies、头部信息、域名信息、搜索引擎爬行规则、页面地图、服务器位置、重定向记录、开放端口、路由跟踪、DNS安全扩展、网站性能、跟踪器、关联主机名、碳足迹。请持续关注，我将很快添加更多功能！
 
-The aim is to help you easily understand, optimize and secure your website.
+目标是帮助您轻松理解、优化和保护您的网站。
 
 ### Screenshot
 
 <details>
-      <summary>Expand Screenshot</summary>
+      <summary>展开截图</summary>
 
 [![Screenshot](https://raw.githubusercontent.com/Lissy93/web-check/master/.github/screenshots/web-check-screenshot1.png)](https://web-check.as93.net/)
       
@@ -69,40 +67,38 @@ The aim is to help you easily understand, optimize and secure your website.
 [![Screenshot](https://i.ibb.co/r0jXN6s/web-check.png)](https://github.com/Lissy93/web-check/tree/master/.github/screenshots)
 
 ### Live Demo
-A hosted version can be accessed at: **[web-check.as93.net](https://web-check.as93.net)**
+托管版本可访问：**[web-check.as93.net](https://web-check.as93.net)**
 
 ### Mirror
-The source for this repo is mirrored to CodeBerg, available at: **[codeberg.org/alicia/web-check](https://codeberg.org/alicia/web-check)**
+此仓库的源代码已镜像到CodeBerg，可在以下地址访问：**[codeberg.org/alicia/web-check](https://codeberg.org/alicia/web-check)**
 
 ### Status
 
-
-Build & Deploys: [![Netlify Status](https://api.netlify.com/api/v1/badges/c43453c1-5333-4df7-889b-c1d2b52183c0/deploy-status)](https://app.netlify.com/sites/web-check/deploys)
+构建与部署: [![Netlify Status](https://api.netlify.com/api/v1/badges/c43453c1-5333-4df7-889b-c1d2b52183c0/deploy-status)](https://app.netlify.com/sites/web-check/deploys)
 [![Vercel Status](https://therealsujitk-vercel-badge.vercel.app/?app=web-check-ten)](https://vercel.com/as93/web-check/)
 [![🐳 Build + Publish Docker Image](https://github.com/Lissy93/web-check/actions/workflows/docker.yml/badge.svg)](https://github.com/Lissy93/web-check/actions/workflows/docker.yml)
 [![🚀 Deploy to AWS](https://github.com/Lissy93/web-check/actions/workflows/deploy-aws.yml/badge.svg)](https://github.com/Lissy93/web-check/actions/workflows/deploy-aws.yml)
 <br />
-Repo Management & Miscellaneous: [![🪞 Mirror to Codeberg](https://github.com/Lissy93/web-check/actions/workflows/mirror.yml/badge.svg)](https://github.com/Lissy93/web-check/actions/workflows/mirror.yml)
+仓库管理与杂项: [![🪞 Mirror to Codeberg](https://github.com/Lissy93/web-check/actions/workflows/mirror.yml/badge.svg)](https://github.com/Lissy93/web-check/actions/workflows/mirror.yml)
 [![💓 Inserts Contributors & Sponsors](https://github.com/Lissy93/web-check/actions/workflows/credits.yml/badge.svg)](https://github.com/Lissy93/web-check/actions/workflows/credits.yml)
-
 
 ### Features
 
 <details open>
-<summary><b>Click to expand / collapse section</b></summary>
+<summary><b>点击展开/收起部分</b></summary>
 
-<sup>**Note** _this list needs updating, many more jobs have been added since..._</sup>
+<sup>**注意** _此列表需要更新，自从上次更新以来已添加了许多新功能..._</sup>
 
-The following section outlines the core features, and briefly explains why this data might be useful for you to know, as well as linking to further resources for learning more.
+以下部分概述了核心功能，并简要解释了这些数据为何对您有用，同时提供了进一步学习的资源链接。
 
 <details>
 <summary><b>IP Info</b></summary>
 
-###### Description
-An IP address (Internet Protocol address) is a numerical label assigned to each device connected to a network / the internet. The IP associated with a given domain can be found by querying the Domain Name System (DNS) for the domain's A (address) record.
+###### 描述
+IP地址（互联网协议地址）是为连接到网络/互联网的每个设备分配的数字标签。通过查询域名的DNS（域名系统）A（地址）记录，可以找到与给定域名关联的IP。
 
-###### Use Cases
-Finding the IP of a given server is the first step to conducting further investigations, as it allows us to probe the server for additional info. Including creating a detailed map of a target's network infrastructure, pinpointing the physical location of a server, identifying the hosting service, and even discovering other domains that are hosted on the same IP address.
+###### 用例
+查找给定服务器的IP是进行进一步调查的第一步，因为它允许我们探测服务器以获取更多信息。包括创建目标网络基础设施的详细地图，确定服务器的物理位置，识别托管服务，甚至发现托管在同一IP地址上的其他域名。
 
 ###### Useful Links
 - [Understanding IP Addresses](https://www.digitalocean.com/community/tutorials/understanding-ip-addresses-subnets-and-cidr-notation-for-networking)
@@ -116,11 +112,11 @@ Finding the IP of a given server is the first step to conducting further investi
 
 <img width="300" src="https://i.ibb.co/kB7LsV1/wc-ssl.png" align="right" />
 
-###### Description
-SSL certificates are digital certificates that authenticate the identity of a website or server, enable secure encrypted communication (HTTPS), and establish trust between clients and servers. A valid SSL certificate is required for a website to be able to use the HTTPS protocol, and encrypt user + site data in transit. SSL certificates are issued by Certificate Authorities (CAs), which are trusted third parties that verify the identity and legitimacy of the certificate holder.
+###### 描述
+SSL证书是用于验证网站或服务器身份的数字证书，启用安全的加密通信（HTTPS），并在客户端和服务器之间建立信任。要使网站能够使用HTTPS协议并加密用户和网站数据传输，必须拥有有效的SSL证书。SSL证书由证书颁发机构（CA）签发，这些机构是验证证书持有者身份和合法性的可信第三方。
 
-###### Use Cases
-SSL certificates not only provide the assurance that data transmission to and from the website is secure, but they also provide valuable OSINT data. Information from an SSL certificate can include the issuing authority, the domain name, its validity period, and sometimes even organization details. This can be useful for verifying the authenticity of a website, understanding its security setup, or even for discovering associated subdomains or other services.
+###### 用例
+SSL证书不仅保证了数据传输的安全性，还提供了有价值的OSINT数据。SSL证书中的信息可能包括颁发机构、域名、有效期，有时甚至包括组织详细信息。这对于验证网站的真实性、了解其安全设置或发现关联的子域名或其他服务非常有用。
 
 ###### Useful Links
 - [TLS - Wiki](https://en.wikipedia.org/wiki/Transport_Layer_Security)
@@ -134,11 +130,11 @@ SSL certificates not only provide the assurance that data transmission to and fr
 
 <img width="300" src="https://i.ibb.co/7Q1kMwM/wc-dns.png" align="right" />
 
-###### Description
-This task involves looking up the DNS records associated with a specific domain. DNS is a system that translates human-readable domain names into IP addresses that computers use to communicate. Various types of DNS records exist, including A (address), MX (mail exchange), NS (name server), CNAME (canonical name), and TXT (text), among others.
+###### 描述
+此任务涉及查找与特定域名关联的DNS记录。DNS是一个将人类可读的域名翻译成计算机用于通信的IP地址的系统。存在多种类型的DNS记录，包括A（地址）、MX（邮件交换）、NS（名称服务器）、CNAME（规范名称）和TXT（文本）等。
 
-###### Use Cases
-Extracting DNS records can provide a wealth of information in an OSINT investigation. For example, A and AAAA records can disclose IP addresses associated with a domain, potentially revealing the location of servers. MX records can give clues about a domain's email provider. TXT records are often used for various administrative purposes and can sometimes inadvertently leak internal information. Understanding a domain's DNS setup can also be useful in understanding how its online infrastructure is built and managed.
+###### 用例
+提取DNS记录可以在OSINT调查中提供大量信息。例如，A和AAAA记录可以披露与域名关联的IP地址，可能揭示服务器位置。MX记录可以提供关于域名电子邮件提供商的线索。TXT记录通常用于各种管理目的，有时可能会无意泄露内部信息。了解域名的DNS设置还有助于理解其在线基础设施的构建和管理方式。
 
 ###### Useful Links
 - [What are DNS records? (via Cloudflare learning)](https://www.cloudflare.com/learning/dns/dns-records/)
@@ -152,11 +148,11 @@ Extracting DNS records can provide a wealth of information in an OSINT investiga
 
 <img width="300" src="https://i.ibb.co/TTQ6DtP/wc-cookies.png" align="right" />
 
-###### Description
-The Cookies task involves examining the HTTP cookies set by the target website. Cookies are small pieces of data stored on the user's computer by the web browser while browsing a website. They hold a modest amount of data specific to a particular client and website, such as site preferences, the state of the user's session, or tracking information.
+###### 描述
+Cookies任务涉及检查目标网站设置的HTTP cookies。Cookies是用户浏览网站时由网页浏览器存储在用户计算机上的小块数据。它们保存特定客户端和网站的少量数据，例如网站偏好、用户会话状态或跟踪信息。
 
-###### Use Cases
-Cookies can disclose information about how the website tracks and interacts with its users. For instance, session cookies can reveal how user sessions are managed, and tracking cookies can hint at what kind of tracking or analytics frameworks are being used. Additionally, examining cookie policies and practices can offer insights into the site's security settings and compliance with privacy regulations.
+###### 用例
+Cookies可以揭示网站如何跟踪和与用户交互的信息。例如，会话Cookies可以显示用户会话是如何管理的，跟踪Cookies可以暗示使用了何种跟踪或分析框架。此外，检查Cookies政策和实践可以提供关于网站安全设置和隐私法规遵从性的见解。
 
 ###### Useful Links
 - [HTTP Cookie Docs (Mozilla)](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies)
@@ -170,11 +166,11 @@ Cookies can disclose information about how the website tracks and interacts with
 
 <img width="300" src="https://i.ibb.co/KwQCjPf/wc-robots.png" align="right" />
 
-###### Description
-Robots.txt is a file found (usually) at the root of a domain, and is used to implement the Robots Exclusion Protocol (REP) to indicate which pages should be ignored by which crawlers and bots. It's good practice to avoid search engine crawlers from over-loading your site, but should not be used to keep pages out of search results (use the noindex meta tag or header instead).
+###### 描述
+Robots.txt是一个通常位于域名根目录下的文件，用于实现机器人排除协议（REP），指示哪些页面应被哪些爬虫和机器人忽略。避免搜索引擎爬虫过载网站是一种良好实践，但不应将其用于将页面排除在搜索结果之外（应使用noindex元标签或头部）。
 
-###### Use Cases
-It's often useful to check the robots.txt file during an investigation, as it can sometimes disclose the directories and pages that the site owner doesn't want to be indexed, potentially because they contain sensitive information, or reveal the existence of otherwise hidden or unlinked directories. Additionally, understanding crawl rules may offer insights into a website's SEO strategies.
+###### 用例
+在调查期间检查robots.txt文件通常很有用，因为它有时会披露网站所有者不希望被索引的目录和页面，可能是因为它们包含敏感信息，或者揭示了其他隐藏或未链接的目录的存在。此外，了解爬行规则可能提供关于网站SEO策略的见解。
 
 ###### Useful Links
 - [Google Search Docs - Robots.txt](https://developers.google.com/search/docs/advanced/robots/intro)
@@ -188,11 +184,11 @@ It's often useful to check the robots.txt file during an investigation, as it ca
 
 <img width="300" src="https://i.ibb.co/t3xcwP1/wc-headers.png" align="right" />
 
-###### Description
-The Headers task involves extracting and interpreting the HTTP headers sent by the target website during the request-response cycle. HTTP headers are key-value pairs sent at the start of an HTTP response, or before the actual data. Headers contain important directives for how to handle the data being transferred, including cache policies, content types, encoding, server information, security policies, and more.
+###### 描述
+Headers任务涉及提取和解释目标网站在请求-响应周期中发送的HTTP头部。HTTP头部是响应开始时或实际数据之前发送的键值对。头部包含处理数据传输的重要指令，包括缓存策略、内容类型、编码、服务器信息、安全策略等。
 
-###### Use Cases
-Analyzing HTTP headers can provide significant insights in an OSINT investigation. Headers can reveal specific server configurations, chosen technologies, caching directives, and various security settings. This information can help to determine a website's underlying technology stack, server-side security measures, potential vulnerabilities, and general operational practices.
+###### 用例
+分析HTTP头部可以在OSINT调查中提供重要见解。头部可以揭示特定的服务器配置、所选技术、缓存指令和各种安全设置。这些信息有助于确定网站的基础技术堆栈、服务器端安全措施、潜在漏洞和一般操作实践。
 
 ###### Useful Links
 - [HTTP Headers - Docs](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers)
@@ -206,11 +202,11 @@ Analyzing HTTP headers can provide significant insights in an OSINT investigatio
 
 <img width="300" src="https://i.ibb.co/Kqg8rx7/wc-quality.png" align="right" />
 
-###### Description
-Using Lighthouse, the Quality Metrics task measures the performance, accessibility, best practices, and SEO of the target website. This returns a simple checklist of 100 core metrics, along with a score for each category, to gauge the overall quality of a given site.
+###### 描述
+使用Lighthouse，质量指标任务测量目标网站的性能、可访问性、最佳实践和SEO。这将返回一个包含100个核心指标的简单清单，以及每个类别的分数，以评估给定网站的整体质量。
 
-###### Use Cases
-Useful for assessing a site's technical health, SEO issues, identify vulnerabilities, and ensure compliance with standards.
+###### 用例
+用于评估网站的技术健康状况、SEO问题，识别漏洞，并确保符合标准。
 
 ###### Useful Links
 - [Lighthouse Docs](https://developer.chrome.com/docs/lighthouse/)
@@ -226,11 +222,11 @@ Useful for assessing a site's technical health, SEO issues, identify vulnerabili
 
 <img width="300" src="https://i.ibb.co/cXH2hfR/wc-location.png" align="right" />
 
-###### Description
-The Server Location task determines the physical location of the server hosting a given website based on its IP address. This is done by looking up the IP in a location database, which maps the IP to a lat + long of known data centers and ISPs. From the latitude and longitude, it's then possible to show additional contextual info, like a pin on the map, along with address, flag, time zone, currency, etc.
+###### 描述
+服务器位置任务根据其IP地址确定托管给定网站的服务器的物理位置。这是通过在位置数据库中查找IP来完成的，该数据库将IP映射到已知数据中心和ISP的经纬度。从经纬度中，还可以显示额外的上下文信息，如地图上的标记、地址、旗帜、时区、货币等。
 
-###### Use Cases
-Knowing the server location is a good first step in better understanding a website. For site owners this aids in optimizing content delivery, ensuring compliance with data residency requirements, and identifying potential latency issues that may impact user experience in specific geographical regions. And for security researcher, assess the risk posed by specific regions or jurisdictions regarding cyber threats and regulations.
+###### 用例
+了解服务器位置是更好地理解网站的第一步。对于网站所有者来说，这有助于优化内容分发，确保符合数据驻留要求，并识别可能影响特定地理区域用户体验的潜在延迟问题。对于安全研究人员来说，评估特定地区或司法管辖区在网络威胁和法规方面的风险。
 
 ###### Useful Links
 - [IP Locator](https://geobytes.com/iplocator/)
@@ -242,11 +238,11 @@ Knowing the server location is a good first step in better understanding a websi
 
 <img width="300" src="https://i.ibb.co/25j1sT7/wc-hosts.png" align="right" />
 
-###### Description
-This task involves identifying and listing all domains and subdomains (hostnames) that are associated with the website's primary domain. This process often involves DNS enumeration to discover any linked domains and hostnames, as well as looking at known DNS records.
+###### 描述
+此任务涉及识别和列出与网站主域名关联的所有域名和子域名（主机名）。此过程通常涉及DNS枚举以发现任何关联的域名和主机名，以及查看已知的DNS记录。
 
-###### Use Cases
-During an investigation, understanding the full scope of a target's web presence is critical. Associated domains could lead to uncovering related projects, backup sites, development/test sites, or services linked to the main site. These can sometimes provide additional information or potential security vulnerabilities. A comprehensive list of associated domains and hostnames can also give an overview of the organization's structure and online footprint.
+###### 用例
+在调查期间，了解目标的完整网络存在范围至关重要。关联域名可能有助于发现相关项目、备份站点、开发/测试站点或与主站点相关的服务。这些有时可以提供额外的信息或潜在的安全漏洞。关联域名和主机名的全面列表还可以提供组织结构和在线足迹的概览。
 
 ###### Useful Links
 - [DNS Enumeration - Wiki](https://en.wikipedia.org/wiki/DNS_enumeration)
@@ -260,11 +256,11 @@ During an investigation, understanding the full scope of a target's web presence
 
 <img width="300" src="https://i.ibb.co/hVVrmwh/wc-redirects.png" align="right" />
 
-###### Description
-This task traces the sequence of HTTP redirects that occur from the original URL to the final destination URL. An HTTP redirect is a response with a status code that advises the client to go to another URL. Redirects can occur for several reasons, such as URL normalization (directing to the www version of the site), enforcing HTTPS, URL shorteners, or forwarding users to a new site location.
+###### 描述
+此任务跟踪从原始URL到最终目标URL的HTTP重定向序列。HTTP重定向是带有状态码的响应，建议客户端前往另一个URL。重定向可能因多种原因发生，例如URL规范化（定向到www版本的站点）、强制使用HTTPS、URL缩短器或将用户转发到新站点位置。
 
-###### Use Cases
-Understanding the redirect chain can be useful for several reasons. From a security perspective, long or complicated redirect chains can be a sign of potential security risks, such as unencrypted redirects in the chain. Additionally, redirects can impact website performance and SEO, as each redirect introduces additional round-trip-time (RTT). For OSINT, understanding the redirect chain can help identify relationships between different domains or reveal the use of certain technologies or hosting providers.
+###### 用例
+了解重定向链有几个原因。从安全角度来看，过长或复杂的重定向链可能是潜在安全风险的迹象，例如链中未加密的重定向。此外，重定向可能会影响网站性能和SEO，因为每次重定向都会引入额外的往返时间（RTT）。对于OSINT来说，了解重定向链有助于识别不同域名之间的关系或揭示某些技术或托管提供商的使用。
 
 ###### Useful Links
 - [HTTP Redirects - MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Redirections)
@@ -277,11 +273,11 @@ Understanding the redirect chain can be useful for several reasons. From a secur
 
 <img width="300" src="https://i.ibb.co/wyt21QN/wc-txt-records.png" align="right" />
 
-###### Description
-TXT records are a type of DNS record that provides text information to sources outside your domain. They can be used for a variety of purposes, such as verifying domain ownership, ensuring email security, and even preventing unauthorized changes to your website.
+###### 描述
+TXT记录是一种DNS记录类型，为域外来源提供文本信息。它们可用于多种目的，例如验证域名所有权、确保电子邮件安全，甚至防止对网站的未经授权更改。
 
-###### Use Cases
-The TXT records often reveal which external services and technologies are being used with a given domain. They may reveal details about the domain's email configuration, the use of specific services like Google Workspace or Microsoft 365, or security measures in place such as SPF and DKIM. Understanding these details can give an insight into the technologies used by the organization, their email security practices, and potential vulnerabilities.
+###### 用例
+TXT记录通常揭示了与给定域名一起使用的外部服务和技术。它们可能显示有关域名电子邮件配置的详细信息，使用特定服务（如Google Workspace或Microsoft 365）的证据，或安全措施（如SPF和DKIM）的存在。了解这些细节可以洞察组织使用的技术、其电子邮件安全实践和潜在漏洞。
 
 ###### Useful Links
 - [TXT Records (via Cloudflare Learning)](https://www.cloudflare.com/learning/dns/dns-records/dns-txt-record/)
@@ -295,10 +291,10 @@ The TXT records often reveal which external services and technologies are being 
 
 <img width="300" src="https://i.ibb.co/V9CNLBK/wc-status.png" align="right" />
 
-###### Description
-Checks if a server is online and responding to requests.
+###### 描述
+检查服务器是否在线并响应请求。
 
-###### Use Cases
+###### 用例
 
 
 ###### Useful Links
@@ -309,11 +305,11 @@ Checks if a server is online and responding to requests.
 
 <img width="300" src="https://i.ibb.co/F8D1hmf/wc-ports.png" align="right" />
 
-###### Description
-Open ports on a server are endpoints of communication which are available for establishing connections with clients. Each port corresponds to a specific service or protocol, such as HTTP (port 80), HTTPS (port 443), FTP (port 21), etc. The open ports on a server can be determined using techniques such as port scanning.
+###### 描述
+服务器上的开放端口是可用于与客户端建立连接的通信端点。每个端口对应于特定的服务或协议，例如HTTP（端口80）、HTTPS（端口443）、FTP（端口21）等。可以使用端口扫描等技术确定服务器上的开放端口。
 
-###### Use Cases
-Knowing which ports are open on a server can provide information about the services running on that server, useful for understanding the potential vulnerabilities of the system, or for understanding the nature of the services the server is providing.
+###### 用例
+了解服务器上哪些端口是开放的，可以提供有关运行在该服务器上的服务的信息，这对于了解系统的潜在漏洞或了解服务器提供的服务性质非常有用。
 
 ###### Useful Links
 - [List of TCP & UDP Port Numbers](https://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers)
@@ -325,11 +321,11 @@ Knowing which ports are open on a server can provide information about the servi
 
 <img width="300" src="https://i.ibb.co/M59qgxP/wc-trace-route.png" align="right" />
 
-###### Description
-Traceroute is a network diagnostic tool used to track in real-time the pathway taken by a packet of information from one system to another. It records each hop along the route, providing details about the IPs of routers and the delay at each point.
+###### 描述
+Traceroute是一种网络诊断工具，用于实时跟踪信息包从一个系统到另一个系统的路径。它记录沿途的每个跃点，提供有关路由器IP和每个点的延迟的详细信息。
 
-###### Use Cases
-In OSINT investigations, traceroute can provide insights about the routing paths and geography of the network infrastructure supporting a website or service. This can help to identify network bottlenecks, potential censorship or manipulation of network traffic, and give an overall sense of the network's structure and efficiency. Additionally, the IP addresses collected during the traceroute may provide additional points of inquiry for further OSINT investigation.
+###### 用例
+在OSINT调查中，traceroute可以提供有关支持网站或服务的网络基础设施的路由路径和地理位置的见解。这有助于识别网络瓶颈、潜在的审查或网络流量操纵，并总体了解网络的结构和效率。此外，在traceroute期间收集的IP地址可能为进一步的OSINT调查提供额外的查询点。
 
 ###### Useful Links
 - [undefined](function link() { [native code] })
@@ -343,11 +339,11 @@ In OSINT investigations, traceroute can provide insights about the routing paths
 
 <img width="300" src="https://i.ibb.co/5v6fSyw/Screenshot-from-2023-07-29-19-07-50.png" align="right" />
 
-###### Description
-This task calculates the estimated carbon footprint of a website. It's based on the amount of data being transferred and processed, and the energy usage of the servers that host and deliver the website. The larger the website and the more complex its features, the higher its carbon footprint is likely to be.
+###### 描述
+此任务计算网站的估计碳足迹。它基于传输和处理的数据量以及托管和交付网站的服务器的能源使用量。网站越大，功能越复杂，其碳足迹可能越高。
 
-###### Use Cases
-From an OSINT perspective, understanding a website's carbon footprint doesn't directly provide insights into its internal workings or the organization behind it. However, it can still be valuable data in broader analyses, especially in contexts where environmental impact is a consideration. For example, it can be useful for activists, researchers, or ethical hackers who are interested in the sustainability of digital infrastructure, and who want to hold organizations accountable for their environmental impact.
+###### 用例
+从OSINT的角度来看，了解网站的碳足迹并不能直接提供有关其内部运作或背后组织的见解。然而，在涉及环境影响的更广泛分析中，它仍然是宝贵的数据。例如，对于关注数字基础设施可持续性的活动家、研究人员或道德黑客来说，这可能有助于追究组织的环保责任。
 
 ###### Useful Links
 - [WebsiteCarbon - Carbon Calculator](https://www.websitecarbon.com/)
@@ -362,11 +358,11 @@ From an OSINT perspective, understanding a website's carbon footprint doesn't di
 
 <img width="300" src="https://i.ibb.co/Mk1jx32/wc-server.png" align="right" />
 
-###### Description
-This task retrieves various pieces of information about the server hosting the target website. This can include the server type (e.g., Apache, Nginx), the hosting provider, the Autonomous System Number (ASN), and more. The information is usually obtained through a combination of IP address lookups and analysis of HTTP response headers.
+###### 描述
+此任务检索有关托管目标网站的服务器的各种信息。这可能包括服务器类型（例如Apache、Nginx）、托管提供商、自治系统编号（ASN）等。这些信息通常通过IP地址查找和HTTP响应头分析获得。
 
-###### Use Cases
-In an OSINT context, server information can provide valuable clues about the organization behind a website. For instance, the choice of hosting provider could suggest the geographical region in which the organization operates, while the server type could hint at the technologies used by the organization. The ASN could also be used to find other domains hosted by the same organization.
+###### 用例
+在OSINT背景下，服务器信息可以提供有关网站背后组织的重要线索。例如，托管提供商的选择可能暗示组织运营的地理区域，而服务器类型可能提示组织使用的技术。ASN还可以用于查找由同一组织托管的其他域名。
 
 ###### Useful Links
 - [undefined](function link() { [native code] })
@@ -380,11 +376,11 @@ In an OSINT context, server information can provide valuable clues about the org
 
 <img width="300" src="https://i.ibb.co/89WLp14/wc-domain.png" align="right" />
 
-###### Description
-This task retrieves Whois records for the target domain. Whois records are a rich source of information, including the name and contact information of the domain registrant, the domain's creation and expiration dates, the domain's nameservers, and more. The information is usually obtained through a query to a Whois database server.
+###### 描述
+此任务检索目标域名的Whois记录。Whois记录是信息的丰富来源，包括域名注册人的姓名和联系信息、域名的创建和到期日期、域名的名称服务器等。这些信息通常通过查询Whois数据库服务器获得。
 
-###### Use Cases
-In an OSINT context, Whois records can provide valuable clues about the entity behind a website. They can show when the domain was first registered and when it's set to expire, which could provide insights into the operational timeline of the entity. The contact information, though often redacted or anonymized, can sometimes lead to additional avenues of investigation. The nameservers could also be used to link together multiple domains owned by the same entity.
+###### 用例
+在OSINT背景下，Whois记录可以提供有关网站背后实体的重要线索。它们可以显示域名首次注册的时间和到期时间，这可能提供有关实体运营时间线的见解。联系信息虽然通常被编辑或匿名化，但有时可以为进一步调查提供额外的途径。名称服务器还可以用于将同一实体拥有的多个域名联系起来。
 
 ###### Useful Links
 - [undefined](function link() { [native code] })
@@ -397,11 +393,11 @@ In an OSINT context, Whois records can provide valuable clues about the entity b
 
 <img width="300" src="https://i.ibb.co/89WLp14/wc-domain.png" align="right" />
 
-###### Description
-This task retrieves Whois records for the target domain. Whois records are a rich source of information, including the name and contact information of the domain registrant, the domain's creation and expiration dates, the domain's nameservers, and more. The information is usually obtained through a query to a Whois database server.
+###### 描述
+此任务检索目标域名的Whois记录。Whois记录是信息的丰富来源，包括域名注册人的姓名和联系信息、域名的创建和到期日期、域名的名称服务器等。这些信息通常通过查询Whois数据库服务器获得。
 
-###### Use Cases
-In an OSINT context, Whois records can provide valuable clues about the entity behind a website. They can show when the domain was first registered and when it's set to expire, which could provide insights into the operational timeline of the entity. The contact information, though often redacted or anonymized, can sometimes lead to additional avenues of investigation. The nameservers could also be used to link together multiple domains owned by the same entity.
+###### 用例
+在OSINT背景下，Whois记录可以提供有关网站背后实体的重要线索。它们可以显示域名首次注册的时间和到期时间，这可能提供有关实体运营时间线的见解。联系信息虽然通常被编辑或匿名化，但有时可以为进一步调查提供额外的途径。名称服务器还可以用于将同一实体拥有的多个域名联系起来。
 
 ###### Useful Links
 - [undefined](function link() { [native code] })
@@ -414,11 +410,11 @@ In an OSINT context, Whois records can provide valuable clues about the entity b
 
 <img width="300" src="https://i.ibb.co/J54zVmQ/wc-dnssec.png" align="right" />
 
-###### Description
-Without DNSSEC, it's possible for MITM attackers to spoof records and lead users to phishing sites. This is because the DNS system includes no built-in methods to verify that the response to the request was not forged, or that any other part of the process wasn’t interrupted by an attacker. The DNS Security Extensions (DNSSEC) secures DNS lookups by signing your DNS records using public keys, so browsers can detect if the response has been tampered with. Another solution to this issue is DoH (DNS over HTTPS) and DoT (DNS over TLD).
+###### 描述
+如果没有DNSSEC，中间人攻击者可能伪造记录并将用户引导至钓鱼网站。这是因为DNS系统没有内置方法来验证请求的响应是否被伪造，或者过程中的任何其他部分是否被攻击者中断。DNS安全扩展（DNSSEC）通过使用公钥对DNS记录进行签名来保护DNS查询，因此浏览器可以检测响应是否被篡改。解决此问题的另一个方法是DoH（基于HTTPS的DNS）和DoT（基于TLD的DNS）。
 
-###### Use Cases
-DNSSEC information provides insight into an organization's level of cybersecurity maturity and potential vulnerabilities, particularly around DNS spoofing and cache poisoning. If no DNS secururity (DNSSEC, DoH, DoT, etc) is implemented, this may provide an entry point for an attacker.
+###### 用例
+DNSSEC信息提供了对组织网络安全成熟度和围绕DNS欺骗和缓存投毒的潜在漏洞的见解。如果没有实施DNS安全（DNSSEC、DoH、DoT等），这可能为攻击者提供入口点。
 
 ###### Useful Links
 - [undefined](function link() { [native code] })
@@ -434,11 +430,11 @@ DNSSEC information provides insight into an organization's level of cybersecurit
 
 <img width="300" src="https://i.ibb.co/gP4P6kp/wc-features.png" align="right" />
 
-###### Description
-Checks which core features are present on a site. If a feature as marked as dead, that means it's not being actively used at load time
+###### 描述
+检查网站上存在哪些核心功能。如果某功能被标记为“死”，则表示它在加载时未被积极使用。
 
-###### Use Cases
-This is useful to understand what a site is capable of, and what technologies to look for
+###### 用例
+这有助于了解网站的功能以及需要寻找哪些技术。
 
 ###### Useful Links
 
@@ -448,18 +444,17 @@ This is useful to understand what a site is capable of, and what technologies to
 
 <img width="300" src="https://i.ibb.co/k253fq4/Screenshot-from-2023-07-17-20-10-52.png" align="right" />
 
-###### Description
-HTTP Strict Transport Security (HSTS) is a web security policy mechanism that helps protect websites against protocol downgrade attacks and cookie hijacking. A website can be included in the HSTS preload list by conforming to a set of requirements and then submitting itself to the list.
+###### 描述
+HTTP严格传输安全（HSTS）是一种网络安全策略机制，有助于保护网站免受协议降级攻击和Cookie劫持。网站可以通过符合一组要求并提交至列表来加入HSTS预加载列表。
 
-###### Use Cases
-There are several reasons why it's important for a site to be HSTS enabled:
-      1. User bookmarks or manually types http://example.com and is subject to a man-in-the-middle attacker
-        HSTS automatically redirects HTTP requests to HTTPS for the target domain
-      2. Web application that is intended to be purely HTTPS inadvertently contains HTTP links or serves content over HTTP
-        HSTS automatically redirects HTTP requests to HTTPS for the target domain
-      3. A man-in-the-middle attacker attempts to intercept traffic from a victim user using an invalid certificate and hopes the user will accept the bad certificate
-        HSTS does not allow a user to override the invalid certificate message
-        
+###### 用例
+网站启用HSTS有几个重要原因：
+      1. 用户书签或手动输入http://example.com并受到中间人攻击者的攻击
+        HSTS会自动将HTTP请求重定向到目标域名的HTTPS
+      2. 旨在纯HTTPS的Web应用程序无意中包含HTTP链接或通过HTTP提供内容
+        HSTS会自动将HTTP请求重定向到目标域名的HTTPS
+      3. 中间人攻击者试图使用无效证书拦截受害者用户的流量，并希望用户接受不良证书
+        HSTS不允许用户覆盖无效证书消息
 
 ###### Useful Links
 - [undefined](function link() { [native code] })
@@ -472,10 +467,10 @@ There are several reasons why it's important for a site to be HSTS enabled:
 
 <img width="300" src="https://i.ibb.co/tKpL8F9/Screenshot-from-2023-08-12-15-43-12.png" align="right" />
 
-###### Description
-This check determines the DNS server(s) that the requested URL / IP resolves to. Also fires off a rudimentary check to see if the DNS server supports DoH, and weather it's vulnerable to DNS cache poisoning.
+###### 描述
+此检查确定请求的URL/IP解析到的DNS服务器。还会进行初步检查，以查看DNS服务器是否支持DoH，以及是否容易受到DNS缓存投毒的影响。
 
-###### Use Cases
+###### 用例
 
 
 ###### Useful Links
@@ -486,11 +481,11 @@ This check determines the DNS server(s) that the requested URL / IP resolves to.
 
 <img width="300" src="https://i.ibb.co/bBQSQNz/Screenshot-from-2023-08-12-15-43-46.png" align="right" />
 
-###### Description
-Checks what technologies a site is built with. This is done by fetching and parsing the site, then comparing it against a bit list of RegEx maintained by Wappalyzer to identify the unique fingerprints that different technologies leave.
+###### 描述
+检查网站使用哪些技术构建。这是通过获取并解析网站，然后将其与Wappalyzer维护的大量RegEx列表进行比较，以识别不同技术留下的独特指纹来完成的。
 
-###### Use Cases
-Identifying a website's tech stack aids in evaluating its security by exposing potential vulnerabilities, informs competitive analyses and development decisions, and can guide tailored marketing strategies. Ethical application of this knowledge is crucial to avoid harmful activities like data theft or unauthorized intrusion.
+###### 用例
+识别网站的技术堆栈有助于通过暴露潜在漏洞来评估其安全性，指导竞争分析和开发决策，并可以指导定制的营销策略。道德地应用这些知识至关重要，以避免数据盗窃或未经授权的入侵等有害活动。
 
 ###### Useful Links
 - [Wappalyzer fingerprints](https://github.com/wappalyzer/wappalyzer/tree/master/src/technologies)
@@ -502,11 +497,11 @@ Identifying a website's tech stack aids in evaluating its security by exposing p
 
 <img width="300" src="https://i.ibb.co/GtrCQYq/Screenshot-from-2023-07-21-12-28-38.png" align="right" />
 
-###### Description
-This job finds and parses a site's listed sitemap. This file lists public sub-pages on the site, which the author wishes to be crawled by search engines. Sitemaps help with SEO, but are also useful for seeing all a sites public content at a glance.
+###### 描述
+此任务查找并解析网站的列出站点地图。此文件列出了网站上的公共子页面，作者希望这些页面被搜索引擎抓取。站点地图有助于SEO，但也可以方便地查看网站的所有公共内容。
 
-###### Use Cases
-Understand the structure of a site's public-facing content, and for site-owners, check that you're site's sitemap is accessible, parsable and contains everything you wish it to.
+###### 用例
+了解网站公共内容的结构，对于网站所有者来说，检查您的站点地图是否可访问、可解析并包含您希望的所有内容。
 
 ###### Useful Links
 - [Learn about Sitemaps](https://developers.google.com/search/docs/crawling-indexing/sitemaps/overview)
@@ -519,11 +514,11 @@ Understand the structure of a site's public-facing content, and for site-owners,
 
 <img width="300" src="https://i.ibb.co/tq1FT5r/Screenshot-from-2023-07-24-20-31-21.png" align="right" />
 
-###### Description
-The security.txt file tells researchers how they can responsibly disclose any security issues found on your site. The standard was proposed in RFC 9116, and specifies that this file should include a point of contact (email address), as well as optionally other info, like a link to the security disclosure policy, PGP key, proffered language, policy expiry and more. The file should be located at the root of your domain, either at /security.txt or /.well-known/security.txt.
+###### 描述
+security.txt文件告诉研究人员如何负责任地披露在您的网站上发现的任何安全问题。该标准在RFC 9116中提出，并规定该文件应包括联系点（电子邮件地址），以及可选的其他信息，如安全披露政策的链接、PGP密钥、首选语言、政策到期时间等。该文件应位于域名的根目录下，位于/security.txt或/.well-known/security.txt。
 
-###### Use Cases
-This is important, as without a defined point of contact a security researcher may be unable to report a critical security issue, or may use insecure or possibly public channels to do so. From an OSINT perspective, you may also glean info about a site including their posture on security, their CSAF provider, and meta data from the PGP public key.
+###### 用例
+这很重要，因为如果没有定义的联系点，安全研究人员可能无法报告关键安全问题，或者可能使用不安全或公开的渠道这样做。从OSINT的角度来看，您还可以从中获取有关网站的信息，包括其安全态度、CSAF提供商以及PGP公钥中的元数据。
 
 ###### Useful Links
 - [securitytxt.org](https://securitytxt.org/)
@@ -539,11 +534,11 @@ This is important, as without a defined point of contact a security researcher m
 
 <img width="300" src="https://i.ibb.co/LtK14XR/Screenshot-from-2023-07-29-11-16-44.png" align="right" />
 
-###### Description
-Displays all internal and external links found on a site, identified by the href attributes attached to anchor elements.
+###### 描述
+显示网站上发现的所有内部和外部链接，由附加到锚元素的href属性标识。
 
-###### Use Cases
-For site owners, this is useful for diagnosing SEO issues, improving the site structure, understanding how content is inter-connected. External links can show partnerships, dependencies, and potential reputation risks. From a security standpoint, the outbound links can help identify any potential malicious or compromised sites the website is unknowingly linking to. Analyzing internal links can aid in understanding the site's structure and potentially uncover hidden or vulnerable pages which are not intended to be public. And for an OSINT investigator, it can aid in building a comprehensive understanding of the target, uncovering related entities, resources, or even potential hidden parts of the site.
+###### 用例
+对于网站所有者来说，这有助于诊断SEO问题，改进网站结构，了解内容如何相互连接。外部链接可以显示合作伙伴关系、依赖关系和潜在的声誉风险。从安全角度来看，出站链接可以帮助识别网站可能无意中链接到的任何恶意或受损站点。分析内部链接有助于了解网站结构，并可能发现不应公开的隐藏或易受攻击的页面。对于OSINT调查人员来说，它可以帮助全面了解目标，发现相关实体、资源，甚至网站隐藏的部分。
 
 ###### Useful Links
 - [W3C Link Checker](https://validator.w3.org/checklink)
@@ -554,11 +549,11 @@ For site owners, this is useful for diagnosing SEO issues, improving the site st
 
 <img width="300" src="https://i.ibb.co/4srTT1w/Screenshot-from-2023-07-29-11-15-27.png" align="right" />
 
-###### Description
-Websites can include certain meta tags, that tell search engines and social media platforms what info to display. This usually includes a title, description, thumbnail, keywords, author, social accounts, etc.
+###### 描述
+网站可以包含某些元标签，告诉搜索引擎和社交媒体平台显示哪些信息。这通常包括标题、描述、缩略图、关键字、作者、社交账户等。
 
-###### Use Cases
-Adding this data to your site will boost SEO, and as an OSINT researcher it can be useful to understand how a given web app describes itself
+###### 用例
+将这些数据添加到您的网站将提升SEO，作为OSINT研究人员，了解给定Web应用程序如何描述自己很有用。
 
 ###### Useful Links
 - [SocialSharePreview.com](https://socialsharepreview.com/)
@@ -574,11 +569,11 @@ Adding this data to your site will boost SEO, and as an OSINT researcher it can 
 
 <img width="300" src="https://i.ibb.co/yqhwx5G/Screenshot-from-2023-07-29-18-22-20.png" align="right" />
 
-###### Description
-DMARC (Domain-based Message Authentication, Reporting & Conformance): DMARC is an email authentication protocol that works with SPF and DKIM to prevent email spoofing and phishing. It allows domain owners to specify how to handle unauthenticated mail via a published policy in DNS, and provides a way for receiving mail servers to send feedback about emails' compliance to the sender. BIMI (Brand Indicators for Message Identification): BIMI is an emerging email standard that enables organizations to display a logo in their customers' email clients automatically. BIMI ties the logo to the domain's DMARC record, providing another level of visual assurance to recipients that the email is legitimate. DKIM (DomainKeys Identified Mail): DKIM is an email security standard designed to make sure that messages were not altered in transit between the sending and recipient servers. It uses digital signatures linked to the domain of the sender to verify the sender and ensure message integrity. SPF (Sender Policy Framework): SPF is an email authentication method designed to prevent email spoofing. It specifies which mail servers are authorized to send email on behalf of a domain by creating a DNS record. This helps protect against spam by providing a way for receiving mail servers to check that incoming mail from a domain comes from a host authorized by that domain's administrators.
+###### 描述
+DMARC（基于域的消息认证、报告和一致性）：DMARC是一种电子邮件认证协议，与SPF和DKIM一起工作，以防止电子邮件欺骗和钓鱼。它允许域名所有者通过在DNS中发布的策略指定如何处理未经认证的邮件，并为接收邮件服务器提供一种向发件人发送有关邮件合规性反馈的方式。BIMI（消息识别品牌指示符）：BIMI是一种新兴的电子邮件标准，使组织能够自动在其客户的电子邮件客户端中显示标志。BIMI将标志与域的DMARC记录绑定，为收件人提供另一个视觉上的合法性保证。DKIM（域密钥识别邮件）：DKIM是一种电子邮件安全标准，旨在确保消息在发送和接收服务器之间的传输中未被更改。它使用与发件人域链接的数字签名来验证发件人并确保消息完整性。SPF（发件人策略框架）：SPF是一种电子邮件认证方法，旨在防止电子邮件欺骗。它通过创建DNS记录指定哪些邮件服务器有权代表域发送电子邮件，从而保护免受垃圾邮件的影响。这有助于接收邮件服务器检查来自域的传入邮件是否来自该域管理员授权的主机。
 
-###### Use Cases
-This information is helpful for researchers as it helps assess a domain's email security posture, uncover potential vulnerabilities, and verify the legitimacy of emails for phishing detection. These details can also provide insight into the hosting environment, potential service providers, and the configuration patterns of a target organization, assisting in investigative efforts.
+###### 用例
+这些信息对研究人员很有帮助，因为它有助于评估域的电子邮件安全状况，发现潜在漏洞，并验证电子邮件的合法性以检测钓鱼。这些细节还可以洞察托管环境、潜在服务提供商以及目标组织的配置模式，协助调查工作。
 
 ###### Useful Links
 - [Intro to DMARC, DKIM, and SPF (via Cloudflare)](https://www.cloudflare.com/learning/email-security/dmarc-dkim-spf/)
@@ -595,11 +590,11 @@ This information is helpful for researchers as it helps assess a domain's email 
 
 <img width="300" src="https://i.ibb.co/MfcxQt2/Screenshot-from-2023-08-12-15-40-52.png" align="right" />
 
-###### Description
-A WAF or web application firewall helps protect web applications by filtering and monitoring HTTP traffic between a web application and the Internet. It typically protects web applications from attacks such as cross-site forgery, cross-site-scripting (XSS), file inclusion, and SQL injection, among others.
+###### 描述
+WAF或Web应用防火墙通过过滤和监控Web应用程序与互联网之间的HTTP流量来帮助保护Web应用程序。它通常保护Web应用程序免受跨站伪造、跨站脚本（XSS）、文件包含和SQL注入等攻击。
 
-###### Use Cases
-It's useful to understand if a site is using a WAF, and which firewall software / service it is using, as this provides an insight into the sites protection against several attack vectors, but also may reveal vulnerabilities in the firewall itself.
+###### 用例
+了解网站是否使用WAF以及使用哪种防火墙软件/服务很有用，因为这提供了网站对几种攻击向量的保护见解，但也可能揭示防火墙本身的漏洞。
 
 ###### Useful Links
 - [What is a WAF (via Cloudflare Learning)](https://www.cloudflare.com/learning/ddos/glossary/web-application-firewall-waf/)
@@ -613,11 +608,11 @@ It's useful to understand if a site is using a WAF, and which firewall software 
 
 <img width="300" src="https://i.ibb.co/LP05HMV/Screenshot-from-2023-08-12-15-40-28.png" align="right" />
 
-###### Description
-Correctly configured security HTTP headers adds a layer of protection against common attacks to your site. The main headers to be aware of are: HTTP Strict Transport Security (HSTS): Enforces the use of HTTPS, mitigating man-in-the-middle attacks and protocol downgrade attempts. Content Security Policy (CSP): Constrains web page resources to prevent cross-site scripting and data injection attacks. X-Content-Type-Options: Prevents browsers from MIME-sniffing a response away from the declared content type, curbing MIME-type confusion attacks. X-Frame-Options: Protects users from clickjacking attacks by controlling whether a browser should render the page in a `<frame>`, `<iframe>`, `<embed>`, or `<object>`. 
+###### 描述
+正确配置的安全HTTP头部为您的网站增加了一层针对常见攻击的保护。主要需要注意的头部包括：HTTP严格传输安全（HSTS）：强制使用HTTPS，减轻中间人攻击和协议降级尝试。内容安全策略（CSP）：约束网页资源以防止跨站脚本和数据注入攻击。X-Content-Type-Options：防止浏览器从声明的内容类型中嗅探MIME，遏制MIME类型混淆攻击。X-Frame-Options：通过控制浏览器是否应在`<frame>`、`<iframe>`、`<embed>`或`<object>`中渲染页面，保护用户免受点击劫持攻击。
 
-###### Use Cases
-Reviewing security headers is important, as it offers insights into a site's defensive posture and potential vulnerabilities, enabling proactive mitigation and ensuring compliance with security best practices.
+###### 用例
+审查安全头部很重要，因为它提供了有关网站防御态势和潜在漏洞的见解，能够主动缓解问题并确保符合安全最佳实践。
 
 ###### Useful Links
 - [OWASP Secure Headers Project](https://owasp.org/www-project-secure-headers/)
@@ -638,11 +633,11 @@ Reviewing security headers is important, as it offers insights into a site's def
 
 <img width="300" src="https://i.ibb.co/nB9szT1/Screenshot-from-2023-08-14-22-31-16.png" align="right" />
 
-###### Description
-Fetches full history of archives from the Wayback machine
+###### 描述
+从Wayback Machine获取完整的档案历史。
 
-###### Use Cases
-This is useful for understanding the history of a site, and how it has changed over time. It can also be useful for finding old versions of a site, or for finding content that has been removed.
+###### 用例
+这对于了解网站的历史以及随时间变化的情况很有用。它还可以用于查找旧版本的网站，或查找已删除的内容。
 
 ###### Useful Links
 - [Wayback Machine](https://archive.org/web/)
@@ -653,11 +648,11 @@ This is useful for understanding the history of a site, and how it has changed o
 
 <img width="300" src="https://i.ibb.co/nkbczgb/Screenshot-from-2023-08-14-22-02-40.png" align="right" />
 
-###### Description
-This check shows the global rank of the requested site. This is only accurate for websites which are in the top 100 million list. We're using data from the Tranco project (see below), which collates the top sites on the web from Umbrella, Majestic, Quantcast, the Chrome User Experience Report and Cloudflare Radar.
+###### 描述
+此检查显示请求网站的全球排名。这仅对排名前1亿的网站准确。我们使用的是Tranco项目的数据（见下文），该项目从Umbrella、Majestic、Quantcast、Chrome用户体验报告和Cloudflare Radar中整理了网络上的顶级网站。
 
-###### Use Cases
-Knowing a websites overall global rank can be useful for understanding the scale of the site, and for comparing it to other sites. It can also be useful for understanding the relative popularity of a site, and for identifying potential trends.
+###### 用例
+了解网站的整体全球排名有助于了解网站的规模，并与其他网站进行比较。它还可以用于了解网站的相对受欢迎程度，并识别潜在趋势。
 
 ###### Useful Links
 - [Tranco List](https://tranco-list.eu/)
@@ -669,10 +664,10 @@ Knowing a websites overall global rank can be useful for understanding the scale
 
 <img width="300" src="https://i.ibb.co/M5JSXbW/Screenshot-from-2023-08-26-12-12-43.png" align="right" />
 
-###### Description
-Checks access to the URL using 10+ of the most popular privacy, malware and parental control blocking DNS servers.
+###### 描述
+使用10多个最受欢迎的隐私、恶意软件和家长控制阻止DNS服务器检查对URL的访问。
 
-###### Use Cases
+###### 用例
 
 
 ###### Useful Links
@@ -684,11 +679,11 @@ Checks access to the URL using 10+ of the most popular privacy, malware and pare
 
 <img width="300" src="https://i.ibb.co/hYgy621/Screenshot-from-2023-08-26-12-07-47.png" align="right" />
 
-###### Description
-Checks if a site appears in several common malware and phishing lists, to determine it's threat level.
+###### 描述
+检查网站是否出现在几个常见的恶意软件和钓鱼列表中，以确定其威胁级别。
 
-###### Use Cases
-Knowing if a site is listed as a threat by any of these services can be useful for understanding the reputation of a site, and for identifying potential trends.
+###### 用例
+了解网站是否被任何这些服务列为威胁，有助于了解网站的声誉，并识别潜在趋势。
 
 ###### Useful Links
 - [URLHaus](https://urlhaus-api.abuse.ch/)
@@ -700,11 +695,11 @@ Knowing if a site is listed as a threat by any of these services can be useful f
 
 <img width="300" src="https://i.ibb.co/6ydtH5R/Screenshot-from-2023-08-26-12-09-58.png" align="right" />
 
-###### Description
-These are combinations of cryptographic algorithms used by the server to establish a secure connection. It includes the key exchange algorithm, bulk encryption algorithm, MAC algorithm, and PRF (pseudorandom function).
+###### 描述
+这些是服务器用于建立安全连接的加密算法组合。它包括密钥交换算法、批量加密算法、MAC算法和PRF（伪随机函数）。
 
-###### Use Cases
-This is important info to test for from a security perspective. Because a cipher suite is only as secure as the algorithms that it contains. If the version of encryption or authentication algorithm in a cipher suite have known vulnerabilities the cipher suite and TLS connection may then vulnerable to a downgrade or other attack
+###### 用例
+从安全角度测试这些信息很重要。因为密码套件的安全性取决于其包含的算法。如果密码套件中的加密或认证算法版本存在已知漏洞，则密码套件和TLS连接可能容易受到降级或其他攻击。
 
 ###### Useful Links
 - [sslscan2 CLI](https://github.com/rbsec/sslscan)
@@ -716,11 +711,11 @@ This is important info to test for from a security perspective. Because a cipher
 
 <img width="300" src="https://i.ibb.co/FmksZJt/Screenshot-from-2023-08-26-12-12-09.png" align="right" />
 
-###### Description
-This uses guidelines from Mozilla's TLS Observatory to check the security of the TLS configuration. It checks for bad configurations, which may leave the site vulnerable to attack, as well as giving advice on how to fix. It will also give suggestions around outdated and modern TLS configs
+###### 描述
+这使用Mozilla的TLS Observatory指南检查TLS配置的安全性。它检查可能使网站容易受到攻击的不良配置，并提供修复建议。它还将提供有关过时和现代TLS配置的建议。
 
-###### Use Cases
-Understanding issues with a site's TLS configuration will help you address potential vulnerabilities, and ensure the site is using the latest and most secure TLS configuration.
+###### 用例
+了解网站TLS配置的问题将帮助您解决潜在漏洞，并确保网站使用最新、最安全的TLS配置。
 
 ###### Useful Links
 
@@ -730,10 +725,10 @@ Understanding issues with a site's TLS configuration will help you address poten
 
 <img width="300" src="https://i.ibb.co/F7qRZkh/Screenshot-from-2023-08-26-12-11-28.png" align="right" />
 
-###### Description
-This simulates how different clients (browsers, operating systems) would perform a TLS handshake with the server. It helps identify compatibility issues and insecure configurations.
+###### 描述
+这模拟了不同客户端（浏览器、操作系统）如何与服务器执行TLS握手。它有助于识别兼容性问题和不安全的配置。
 
-###### Use Cases
+###### 用例
 
 
 ###### Useful Links
@@ -746,589 +741,57 @@ This simulates how different clients (browsers, operating systems) would perform
 
 <img width="300" src="https://i.ibb.co/2F0x8kP/Screenshot-from-2023-07-29-18-34-48.png" align="right" />
 
-###### Description
-This check takes a screenshot of webpage that the requested URL / IP resolves to, and displays it.
+###### 描述
+此检查截取请求的URL/IP解析到的网页的屏幕截图并显示。
 
-###### Use Cases
-This may be useful to see what a given website looks like, free of the constraints of your browser, IP, or location.
-
-
-</details>
+###### 用例
+这可能有助于查看给定网站的外观，不受您的浏览器、IP或位置的约束。
 
 </details>
 
-Read more here: **[web-check.xyz/about](https://web-check.xyz/about)**
+</details>
+
+了解更多请访问：**[web-check.xyz/about](https://web-check.xyz/about)**
 
 ---
 
-## Usage
+## 使用方法
 
-### Deployment
+### 部署
 
 ### Deploying - Option #1: Netlify
 
-Click the button below, to deploy to Netlify 👇
+点击下方按钮部署到Netlify 👇
 
 [![Deploy to Netlify](https://img.shields.io/badge/Deploy-Netlify-%2330c8c9?style=for-the-badge&logo=netlify&labelColor=1e0e41 'Deploy Web-Check to Netlify, via 1-Click Script')](https://app.netlify.com/start/deploy?repository=https://github.com/lissy93/web-check)
 
 ### Deploying - Option #2: Vercel
 
-Click the button below, to deploy to Vercel 👇
+点击下方按钮部署到Vercel 👇
 
 [![Deploy with Vercel](https://img.shields.io/badge/Deploy-Vercel-%23ffffff?style=for-the-badge&logo=vercel&labelColor=1e0e41)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Flissy93%2Fweb-check&project-name=web-check&repository-name=web-check-fork&demo-title=Web-Check%20Demo&demo-description=Check%20out%20web-check.xyz%20to%20see%20a%20live%20demo%20of%20this%20application%20running.&demo-url=https%3A%2F%2Fweb-check.xyz&demo-image=https%3A%2F%2Fraw.githubusercontent.com%2FLissy93%2Fweb-check%2Fmaster%2F.github%2Fscreenshots%2Fweb-check-screenshot10.png)
 
 ### Deploying - Option #3: Docker
 
-Run `docker run -p 3000:3000 lissy93/web-check`, then open [`localhost:3000`](http://localhost:3000)
+运行 `docker run -p 3000:3000 lissy93/web-check`，然后打开 [`localhost:3000`](http://localhost:3000)
 
 <details>
-<summary>Docker Options</summary>
+<summary>Docker选项</summary>
 
-You can get the Docker image from:
+您可以从以下位置获取Docker镜像：
 - DockerHub: [`lissy93/web-check`](https://hub.docker.com/r/lissy93/web-check)
 - GHCR: [`ghcr.io/lissy93/web-check`](https://github.com/Lissy93/web-check/pkgs/container/web-check)
-- Or build the image yourself by cloning the repo and running `docker build -t web-check .`
+- 或通过克隆仓库并运行 `docker build -t web-check .` 自行构建镜像
 
 </details>
 
-### Deploying - Option #4: From Source
+### Deploying - Option #4: 从源代码
 
-Install the prerequisites listed in the [Developing](#developing) section, then run: 
+安装[开发](#developing)部分列出的前提条件，然后运行：
 
 ```bash
-git clone https://github.com/Lissy93/web-check.git  # Download the code from GitHub
-cd web-check                                        # Navigate into the project dir
-yarn install                                        # Install the NPM dependencies
-yarn build                                          # Build the app for production
-yarn serve                                          # Start the app (API and GUI)
-```
-
----
-
-### Configuring
-
-By default, no configuration is needed.
-
-But there are some optional environmental variables that you can set to give you access to some additional checks, or to increase rate-limits for some checks that use external APIs.
-
-**API Keys & Credentials**:
-
-Key | Value
----|---
-`GOOGLE_CLOUD_API_KEY` | A Google API key ([get here](https://cloud.google.com/api-gateway/docs/authenticate-api-keys)). This can be used to return quality metrics for a site
-`REACT_APP_SHODAN_API_KEY` | A Shodan API key ([get here](https://account.shodan.io/)). This will show associated host names for a given domain
-`REACT_APP_WHO_API_KEY` | A WhoAPI key ([get here](https://whoapi.com/)). This will show more comprehensive WhoIs records than the default job
-
-<details>
-  <summary><small>Full / Upcoming Vals</small></summary>
-  
-- `GOOGLE_CLOUD_API_KEY` - A Google API key ([get here](https://cloud.google.com/api-gateway/docs/authenticate-api-keys)). This can be used to return quality metrics for a site
-- `REACT_APP_SHODAN_API_KEY` - A Shodan API key ([get here](https://account.shodan.io/)). This will show associated host names for a given domain
-- `REACT_APP_WHO_API_KEY` - A WhoAPI key ([get here](https://whoapi.com/)). This will show more comprehensive WhoIs records than the default job
-- `SECURITY_TRAILS_API_KEY` - A Security Trails API key ([get here](https://securitytrails.com/corp/api)). This will show org info associated with the IP
-- `CLOUDMERSIVE_API_KEY` - API key for Cloudmersive ([get here](https://account.cloudmersive.com/)). This will show known threats associated with the IP
-- `TRANCO_USERNAME` - A Tranco email ([get here](https://tranco-list.eu/)). This will show the rank of a site, based on traffic
-- `TRANCO_API_KEY` - A Tranco API key ([get here](https://tranco-list.eu/)). This will show the rank of a site, based on traffic
-- `URL_SCAN_API_KEY` - A URLScan API key ([get here](https://urlscan.io/)). This will fetch miscalanious info about a site
-- `BUILT_WITH_API_KEY` - A BuiltWith API key ([get here](https://api.builtwith.com/)). This will show the main features of a site
-- `TORRENT_IP_API_KEY` - A torrent API key ([get here](https://iknowwhatyoudownload.com/en/api/)). This will show torrents downloaded by an IP
-  
-</details>
-
-**Configuration Settings**:
-
-Key | Value
----|---
-`PORT` | Port to serve the API, when running server.js (e.g. `3000`)
-`API_ENABLE_RATE_LIMIT` | Enable rate-limiting for the /api endpoints (e.g. `true`)
-`API_TIMEOUT_LIMIT` | The timeout limit for API requests, in milliseconds (e.g. `10000`)
-`API_CORS_ORIGIN` | Enable CORS, by setting your allowed hostname(s) here (e.g. `example.com`)
-`CHROME_PATH` | The path the Chromium executable (e.g. `/usr/bin/chromium`)
-`DISABLE_GUI` | Disable the GUI, and only serve the API (e.g. `false`)
-`REACT_APP_API_ENDPOINT` | The endpoint for the API, either local or remote (e.g. `/api`)
-
-All values are optional.
-
-You can add these as environmental variables. Either put them directly into an `.env` file in the projects root, or via the Netlify / Vercel UI, or by passing to the Docker container with the --env flag, or using your own environmental variable management system
-
-Note that keys that are prefixed with `REACT_APP_` are used client-side, and as such they must be scoped correctly with minimum privileges, since may be made visible when intercepting browser <-> server network requests
-
----
-
-### Developing
-
-1. Clone the repo, `git clone git@github.com:Lissy93/web-check.git`
-2. Cd into it, `cd web-check`
-3. Install dependencies: `yarn`
-4. Start the dev server, with `yarn dev`
-
-You'll need [Node.js](https://nodejs.org/en) (V 18.16.1 or later) installed, plus [yarn](https://yarnpkg.com/getting-started/install) as well as [git](https://git-scm.com/).
-Some checks also require `chromium`, `traceroute` and `dns` to be installed within your environment. These jobs will just be skipped if those packages aren't present.
-
-
----
-
-## Community
-
-### Contributing
-
-Contributions of any kind are very welcome, and would be much appreciated.
-For Code of Conduct, see [Contributor Convent](https://www.contributor-covenant.org/version/2/1/code_of_conduct/).
-
-To get started, fork the repo, make your changes, add, commit and push the code, then come back here to open a pull request. If you're new to GitHub or open source, [this guide](https://www.freecodecamp.org/news/how-to-make-your-first-pull-request-on-github-3#let-s-make-our-first-pull-request-) or the [git docs](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request) may help you get started, but feel free to reach out if you need any support.
-
-[![Submit a PR](https://img.shields.io/badge/Submit_a_PR-GitHub-%23060606?style=for-the-badge&logo=github&logoColor=fff)](https://github.com/Lissy93/web-check/compare)
-
-
-### Reporting Bugs
-
-If you've found something that doesn't work as it should, or would like to suggest a new feature, then go ahead and raise a ticket on GitHub.
-For bugs, please outline the steps needed to reproduce, and include relevant info like system info and resulting logs.
-
-[![Raise an Issue](https://img.shields.io/badge/Raise_an_Issue-GitHub-%23060606?style=for-the-badge&logo=github&logoColor=fff)](https://github.com/Lissy93/web-check/issues/new/choose)
-
-### Supporting
-
-The app will remain 100% free and open source.
-But due to the amount of traffic that the hosted instance gets, the lambda function usage is costing about $25/month.
-Any help with covering the costs via GitHub Sponsorship would be much appreciated.
-It's thanks to the support of the community that this project is able to be freely available for everyone :)
-
-[![Sponsor Lissy93 on GitHub](https://img.shields.io/badge/Sponsor_on_GitHub-Lissy93-%23ff4dda?style=for-the-badge&logo=githubsponsors&logoColor=ff4dda)](https://github.com/sponsors/Lissy93)
-
-
-### Contributors
-
-Credit to the following users for contributing to Web-Check
-
-<!-- readme: contributors -start -->
-<table>
-	<tbody>
-		<tr>
-            <td align="center">
-                <a href="https://github.com/Lissy93">
-                    <img src="https://avatars.githubusercontent.com/u/1862727?v=4" width="80;" alt="Lissy93"/>
-                    <br />
-                    <sub><b>Alicia Sykes</b></sub>
-                </a>
-            </td>
-            <td align="center">
-                <a href="https://github.com/liss-bot">
-                    <img src="https://avatars.githubusercontent.com/u/87835202?v=4" width="80;" alt="liss-bot"/>
-                    <br />
-                    <sub><b>Alicia Bot</b></sub>
-                </a>
-            </td>
-            <td align="center">
-                <a href="https://github.com/n0a">
-                    <img src="https://avatars.githubusercontent.com/u/14150948?v=4" width="80;" alt="n0a"/>
-                    <br />
-                    <sub><b>Denis Simonov</b></sub>
-                </a>
-            </td>
-            <td align="center">
-                <a href="https://github.com/muni106">
-                    <img src="https://avatars.githubusercontent.com/u/65845442?v=4" width="80;" alt="muni106"/>
-                    <br />
-                    <sub><b>Mounir Samite</b></sub>
-                </a>
-            </td>
-            <td align="center">
-                <a href="https://github.com/ChrisCarini">
-                    <img src="https://avatars.githubusercontent.com/u/6374067?v=4" width="80;" alt="ChrisCarini"/>
-                    <br />
-                    <sub><b>Chris Carini</b></sub>
-                </a>
-            </td>
-            <td align="center">
-                <a href="https://github.com/bolens">
-                    <img src="https://avatars.githubusercontent.com/u/1218380?v=4" width="80;" alt="bolens"/>
-                    <br />
-                    <sub><b>Michael Bolens</b></sub>
-                </a>
-            </td>
-		</tr>
-		<tr>
-            <td align="center">
-                <a href="https://github.com/HeroGamers">
-                    <img src="https://avatars.githubusercontent.com/u/15278940?v=4" width="80;" alt="HeroGamers"/>
-                    <br />
-                    <sub><b>Marcus Sand</b></sub>
-                </a>
-            </td>
-            <td align="center">
-                <a href="https://github.com/jinnabaalu">
-                    <img src="https://avatars.githubusercontent.com/u/11784253?v=4" width="80;" alt="jinnabaalu"/>
-                    <br />
-                    <sub><b>Jinna Baalu</b></sub>
-                </a>
-            </td>
-            <td align="center">
-                <a href="https://github.com/GreyXor">
-                    <img src="https://avatars.githubusercontent.com/u/79602273?v=4" width="80;" alt="GreyXor"/>
-                    <br />
-                    <sub><b>GreyXor</b></sub>
-                </a>
-            </td>
-            <td align="center">
-                <a href="https://github.com/brianteeman">
-                    <img src="https://avatars.githubusercontent.com/u/1296369?v=4" width="80;" alt="brianteeman"/>
-                    <br />
-                    <sub><b>Brian Teeman</b></sub>
-                </a>
-            </td>
-            <td align="center">
-                <a href="https://github.com/vitalykarasik">
-                    <img src="https://avatars.githubusercontent.com/u/7628795?v=4" width="80;" alt="vitalykarasik"/>
-                    <br />
-                    <sub><b>Vitaly Karasik</b></sub>
-                </a>
-            </td>
-            <td align="center">
-                <a href="https://github.com/Its-Just-Nans">
-                    <img src="https://avatars.githubusercontent.com/u/56606507?v=4" width="80;" alt="Its-Just-Nans"/>
-                    <br />
-                    <sub><b>n4n5</b></sub>
-                </a>
-            </td>
-		</tr>
-		<tr>
-            <td align="center">
-                <a href="https://github.com/robinson">
-                    <img src="https://avatars.githubusercontent.com/u/237874?v=4" width="80;" alt="robinson"/>
-                    <br />
-                    <sub><b>Lth</b></sub>
-                </a>
-            </td>
-            <td align="center">
-                <a href="https://github.com/abhishekMuge">
-                    <img src="https://avatars.githubusercontent.com/u/49590582?v=4" width="80;" alt="abhishekMuge"/>
-                    <br />
-                    <sub><b>Abhishek Muge</b></sub>
-                </a>
-            </td>
-            <td align="center">
-                <a href="https://github.com/UlisesGascon">
-                    <img src="https://avatars.githubusercontent.com/u/5110813?v=4" width="80;" alt="UlisesGascon"/>
-                    <br />
-                    <sub><b>Ulises Gascón</b></sub>
-                </a>
-            </td>
-            <td align="center">
-                <a href="https://github.com/PhiRequiem">
-                    <img src="https://avatars.githubusercontent.com/u/1323576?v=4" width="80;" alt="PhiRequiem"/>
-                    <br />
-                    <sub><b>PhiRequiem</b></sub>
-                </a>
-            </td>
-            <td align="center">
-                <a href="https://github.com/Myzel394">
-                    <img src="https://avatars.githubusercontent.com/u/50424412?v=4" width="80;" alt="Myzel394"/>
-                    <br />
-                    <sub><b>Myzel394</b></sub>
-                </a>
-            </td>
-            <td align="center">
-                <a href="https://github.com/murrple-1">
-                    <img src="https://avatars.githubusercontent.com/u/5559656?v=4" width="80;" alt="murrple-1"/>
-                    <br />
-                    <sub><b>Murray Christopherson</b></sub>
-                </a>
-            </td>
-		</tr>
-		<tr>
-            <td align="center">
-                <a href="https://github.com/t3chn0m4g3">
-                    <img src="https://avatars.githubusercontent.com/u/4318452?v=4" width="80;" alt="t3chn0m4g3"/>
-                    <br />
-                    <sub><b>Marco Ochse</b></sub>
-                </a>
-            </td>
-            <td align="center">
-                <a href="https://github.com/treatmesubj">
-                    <img src="https://avatars.githubusercontent.com/u/39680353?v=4" width="80;" alt="treatmesubj"/>
-                    <br />
-                    <sub><b>John Hupperts</b></sub>
-                </a>
-            </td>
-            <td align="center">
-                <a href="https://github.com/eltociear">
-                    <img src="https://avatars.githubusercontent.com/u/22633385?v=4" width="80;" alt="eltociear"/>
-                    <br />
-                    <sub><b>Ikko Eltociear Ashimine</b></sub>
-                </a>
-            </td>
-            <td align="center">
-                <a href="https://github.com/Gertje823">
-                    <img src="https://avatars.githubusercontent.com/u/36937387?v=4" width="80;" alt="Gertje823"/>
-                    <br />
-                    <sub><b>Gertje823</b></sub>
-                </a>
-            </td>
-            <td align="center">
-                <a href="https://github.com/epreston">
-                    <img src="https://avatars.githubusercontent.com/u/347224?v=4" width="80;" alt="epreston"/>
-                    <br />
-                    <sub><b>Ed Preston</b></sub>
-                </a>
-            </td>
-            <td align="center">
-                <a href="https://github.com/dimitri-kandassamy">
-                    <img src="https://avatars.githubusercontent.com/u/21193806?v=4" width="80;" alt="dimitri-kandassamy"/>
-                    <br />
-                    <sub><b>Dimitri Kandassamy</b></sub>
-                </a>
-            </td>
-		</tr>
-		<tr>
-            <td align="center">
-                <a href="https://github.com/0xflotus">
-                    <img src="https://avatars.githubusercontent.com/u/26602940?v=4" width="80;" alt="0xflotus"/>
-                    <br />
-                    <sub><b>0xflotus</b></sub>
-                </a>
-            </td>
-		</tr>
-	<tbody>
-</table>
-<!-- readme: contributors -end -->
-
-### Sponsors
-
-Huge thanks to these wonderful people, who sponsor me on GitHub, their support helps cover the costs required to keep Web-Check and my other projects free for everyone. Consider joining them, by [sponsoring me on GitHub](https://github.com/sponsors/Lissy93) if you're able.
-
-<!-- readme: sponsors -start -->
-<table>
-	<tbody>
-		<tr>
-            <td align="center">
-                <a href="https://github.com/koconder">
-                    <img src="https://avatars.githubusercontent.com/u/25068?u=582657b23622aaa3dfe68bd028a780f272f456fa&v=4" width="80;" alt="koconder"/>
-                    <br />
-                    <sub><b>Vincent Koc</b></sub>
-                </a>
-            </td>
-            <td align="center">
-                <a href="https://github.com/tbjers">
-                    <img src="https://avatars.githubusercontent.com/u/1117052?v=4" width="80;" alt="tbjers"/>
-                    <br />
-                    <sub><b>Torgny Bjers</b></sub>
-                </a>
-            </td>
-            <td align="center">
-                <a href="https://github.com/AnandChowdhary">
-                    <img src="https://avatars.githubusercontent.com/u/2841780?u=747e554b3a7f12eb20b7910e1c87d817844f714f&v=4" width="80;" alt="AnandChowdhary"/>
-                    <br />
-                    <sub><b>Anand Chowdhary</b></sub>
-                </a>
-            </td>
-            <td align="center">
-                <a href="https://github.com/shrippen">
-                    <img src="https://avatars.githubusercontent.com/u/2873570?v=4" width="80;" alt="shrippen"/>
-                    <br />
-                    <sub><b>Shrippen</b></sub>
-                </a>
-            </td>
-            <td align="center">
-                <a href="https://github.com/bile0026">
-                    <img src="https://avatars.githubusercontent.com/u/5022496?u=aec96ad173c0ea9baaba93807efa8a848af6595c&v=4" width="80;" alt="bile0026"/>
-                    <br />
-                    <sub><b>Zach Biles</b></sub>
-                </a>
-            </td>
-            <td align="center">
-                <a href="https://github.com/UlisesGascon">
-                    <img src="https://avatars.githubusercontent.com/u/5110813?u=3c41facd8aa26154b9451de237c34b0f78d672a5&v=4" width="80;" alt="UlisesGascon"/>
-                    <br />
-                    <sub><b>Ulises Gascón</b></sub>
-                </a>
-            </td>
-		</tr>
-		<tr>
-            <td align="center">
-                <a href="https://github.com/digitalarche">
-                    <img src="https://avatars.githubusercontent.com/u/6546135?u=564756d7f44ab2206819eb3148f6d822673f5066&v=4" width="80;" alt="digitalarche"/>
-                    <br />
-                    <sub><b>Digital Archeology</b></sub>
-                </a>
-            </td>
-            <td align="center">
-                <a href="https://github.com/InDieTasten">
-                    <img src="https://avatars.githubusercontent.com/u/7047377?u=8d8f8017628b38bc46dcbf3620e194b01d3fb2d1&v=4" width="80;" alt="InDieTasten"/>
-                    <br />
-                    <sub><b>InDieTasten</b></sub>
-                </a>
-            </td>
-            <td align="center">
-                <a href="https://github.com/araguaci">
-                    <img src="https://avatars.githubusercontent.com/u/7318668?v=4" width="80;" alt="araguaci"/>
-                    <br />
-                    <sub><b>Araguaci</b></sub>
-                </a>
-            </td>
-            <td align="center">
-                <a href="https://github.com/bmcgonag">
-                    <img src="https://avatars.githubusercontent.com/u/7346620?u=2a0f9284f3e12ac1cc15288c254d1ec68a5081e8&v=4" width="80;" alt="bmcgonag"/>
-                    <br />
-                    <sub><b>Brian McGonagill</b></sub>
-                </a>
-            </td>
-            <td align="center">
-                <a href="https://github.com/vlad-tim">
-                    <img src="https://avatars.githubusercontent.com/u/11474041?u=eee43705b54d2ec9f51fc4fcce5ad18dd17c87e4&v=4" width="80;" alt="vlad-tim"/>
-                    <br />
-                    <sub><b>Vlad</b></sub>
-                </a>
-            </td>
-            <td align="center">
-                <a href="https://github.com/helixzz">
-                    <img src="https://avatars.githubusercontent.com/u/12218889?u=d06d0c103dfbdb99450623064f7da3c5a3675fb6&v=4" width="80;" alt="helixzz"/>
-                    <br />
-                    <sub><b>HeliXZz</b></sub>
-                </a>
-            </td>
-		</tr>
-		<tr>
-            <td align="center">
-                <a href="https://github.com/patvdv">
-                    <img src="https://avatars.githubusercontent.com/u/12430107?u=e8911c2fb91af4d30432f76da8c40927b2830bd7&v=4" width="80;" alt="patvdv"/>
-                    <br />
-                    <sub><b>Patrick Van Der Veken</b></sub>
-                </a>
-            </td>
-            <td align="center">
-                <a href="https://github.com/mryesiller">
-                    <img src="https://avatars.githubusercontent.com/u/24632172?u=0d20f2d615158f87cd60a3398d3efb026c32f291&v=4" width="80;" alt="mryesiller"/>
-                    <br />
-                    <sub><b>Göksel Yeşiller</b></sub>
-                </a>
-            </td>
-            <td align="center">
-                <a href="https://github.com/sushibait">
-                    <img src="https://avatars.githubusercontent.com/u/26634535?v=4" width="80;" alt="sushibait"/>
-                    <br />
-                    <sub><b>Shiverme Timbers</b></sub>
-                </a>
-            </td>
-            <td align="center">
-                <a href="https://github.com/forwardemail">
-                    <img src="https://avatars.githubusercontent.com/u/32481436?v=4" width="80;" alt="forwardemail"/>
-                    <br />
-                    <sub><b>Forward Email - Open-source & Privacy-focused Email Service (2023)</b></sub>
-                </a>
-            </td>
-            <td align="center">
-                <a href="https://github.com/semiceau">
-                    <img src="https://avatars.githubusercontent.com/u/50425951?v=4" width="80;" alt="semiceau"/>
-                    <br />
-                    <sub><b>GT</b></sub>
-                </a>
-            </td>
-            <td align="center">
-                <a href="https://github.com/Bastii717">
-                    <img src="https://avatars.githubusercontent.com/u/53431819?u=604977bed6ad6875ada890d0d3765a4cacc2fa14&v=4" width="80;" alt="Bastii717"/>
-                    <br />
-                    <sub><b>Bastii717</b></sub>
-                </a>
-            </td>
-		</tr>
-		<tr>
-            <td align="center">
-                <a href="https://github.com/getumbrel">
-                    <img src="https://avatars.githubusercontent.com/u/59408891?v=4" width="80;" alt="getumbrel"/>
-                    <br />
-                    <sub><b>Umbrel</b></sub>
-                </a>
-            </td>
-            <td align="center">
-                <a href="https://github.com/frankdez93">
-                    <img src="https://avatars.githubusercontent.com/u/87549420?v=4" width="80;" alt="frankdez93"/>
-                    <br />
-                    <sub><b>Frankdez93</b></sub>
-                </a>
-            </td>
-            <td align="center">
-                <a href="https://github.com/terminaltrove">
-                    <img src="https://avatars.githubusercontent.com/u/121595180?v=4" width="80;" alt="terminaltrove"/>
-                    <br />
-                    <sub><b>Terminal Trove</b></sub>
-                </a>
-            </td>
-            <td align="center">
-                <a href="https://github.com/nrvo">
-                    <img src="https://avatars.githubusercontent.com/u/151435968?u=e1dcb307fd0efdc45cddbe9490a7b956e4da6835&v=4" width="80;" alt="nrvo"/>
-                    <br />
-                    <sub><b>Nrvo</b></sub>
-                </a>
-            </td>
-            <td align="center">
-                <a href="https://github.com/hudsonrock-partnerships">
-                    <img src="https://avatars.githubusercontent.com/u/163282900?v=4" width="80;" alt="hudsonrock-partnerships"/>
-                    <br />
-                    <sub><b>hudsonrock-partnerships</b></sub>
-                </a>
-            </td>
-		</tr>
-	<tbody>
-</table>
-<!-- readme: sponsors -end -->
-
----
-
-## License
-
-> _**[Lissy93/Web-Check](https://github.com/Lissy93/web-check)** is licensed under [MIT](https://github.com/Lissy93/web-check/blob/HEAD/LICENSE) © [Alicia Sykes](https://aliciasykes.com) 2023._<br>
-> <sup align="right">For information, see <a href="https://tldrlegal.com/license/mit-license">TLDR Legal > MIT</a></sup>
-
-<details>
-<summary>Expand License</summary>
-
-```
-The MIT License (MIT)
-Copyright (c) Alicia Sykes <alicia@omg.com> 
-
-Permission is hereby granted, free of charge, to any person obtaining a copy 
-of this software and associated documentation files (the "Software"), to deal 
-in the Software without restriction, including without limitation the rights 
-to use, copy, modify, merge, publish, distribute, sub-license, and/or sell 
-copies of the Software, and to permit persons to whom the Software is furnished 
-to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included install 
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANT ABILITY, FITNESS FOR A
-PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
-HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
-SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-```
-
-[![View Dependency Licenses & SBOM on FOSSA](https://app.fossa.com/api/projects/git%2Bgithub.com%2FLissy93%2Fweb-check.svg?type=large&issueType=license)](https://app.fossa.com/projects/git%2Bgithub.com%2FLissy93%2Fweb-check?ref=badge_large&issueType=license)
-
-</details>
-
-
-<!-- License + Copyright -->
-<p  align="center">
-  <i>© <a href="https://aliciasykes.com">Alicia Sykes</a> 2023</i><br>
-  <i>Licensed under <a href="https://gist.github.com/Lissy93/143d2ee01ccc5c052a17">MIT</a></i><br>
-  <a href="https://github.com/lissy93"><img src="https://i.ibb.co/4KtpYxb/octocat-clean-mini.png" /></a><br>
-  <sup>Thanks for visiting :)</sup>
-</p>
-
-<!-- Dinosaurs are Awesome -->
-<!-- 
-                        . - ~ ~ ~ - .
-      ..     _      .-~               ~-.
-     //|     \ `..~                      `.
-    || |      }  }              /       \  \
-(\   \\ \~^..'                 |         }  \
- \`.-~  o      /       }       |        /    \
- (__          |       /        |       /      `.
-  `- - ~ ~ -._|      /_ - ~ ~ ^|      /- _      `.
-              |     /          |     /     ~-.     ~- _
-              |_____|          |_____|         ~ - . _ _~_-_
--->
-
+git clone https://github.com/Lissy93/web-check.git  # 从GitHub下载代码
+cd web-check                                        # 进入项目目录
+yarn install                                        # 安装NPM依赖
+yarn build                                          # 为生产环境构建应用程序
+yarn serve                                          # 启动应用程序（API和GUI）
