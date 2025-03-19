@@ -68,6 +68,7 @@ import {
   parseShodanResults, type ShodanResults
 } from 'web-check-live/utils/result-processor';
 
+// 样式组件保持不变
 const ResultsOuter = styled.div`
   display: flex;
   flex-direction: column;
@@ -153,11 +154,8 @@ const FilterButtons = styled.div`
 
 const Results = (props: { address?: string } ): JSX.Element => {
   const startTime = new Date().getTime();
-
   const address = props.address || useParams().urlToScan || '';
-
   const [ addressType, setAddressType ] = useState<AddressType>('empt');
-
   const [loadingJobs, setLoadingJobs] = useState<LoadingJob[]>(initialJobs);
   const [modalOpen, setModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState<ReactNode>(<></>);
@@ -169,95 +167,88 @@ const Results = (props: { address?: string } ): JSX.Element => {
     setTags([]);
     setSearchTerm('');
   };
+
   const updateTags = (tag: string) => {
-    // Remove current tag if it exists, otherwise add it
-    // setTags(tags.includes(tag) ? tags.filter(t => t !== tag) : [...tags, tag]);
     setTags(tags.includes(tag) ? tags.filter(t => t !== tag) : [tag]);
   };
 
   const updateLoadingJobs = useCallback((jobs: string | string[], newState: LoadingState, error?: string, retry?: () => void, data?: any) => {
     (typeof jobs === 'string' ? [jobs] : jobs).forEach((job: string) => {
-    const now = new Date();
-    const timeTaken = now.getTime() - startTime;
-    setLoadingJobs((prevJobs) => {
-      const newJobs = prevJobs.map((loadingJob: LoadingJob) => {
-        if (job.includes(loadingJob.name)) {
-          return { ...loadingJob, error, state: newState, timeTaken, retry };
+      const now = new Date();
+      const timeTaken = now.getTime() - startTime;
+      setLoadingJobs((prevJobs) => {
+        const newJobs = prevJobs.map((loadingJob: LoadingJob) => {
+          if (job.includes(loadingJob.name)) {
+            return { ...loadingJob, error, state: newState, timeTaken, retry };
+          }
+          return loadingJob;
+        });
+
+        const timeString = `[${now.getHours().toString().padStart(2, '0')}:`
+          +`${now.getMinutes().toString().padStart(2, '0')}:`
+          + `${now.getSeconds().toString().padStart(2, '0')}]`;
+
+        if (newState === 'success') {
+          console.log(
+            `%c获取成功 - ${job}%c\n\n${timeString}%c ${job} 任务在 ${timeTaken}ms 内成功`
+            + `\n%c运行 %cwindow.webCheck['${job}']%c 以检查原始结果`,
+            `background:${colors.success};color:${colors.background};padding: 4px 8px;font-size:16px;`,
+            `font-weight: bold; color: ${colors.success};`,
+            `color: ${colors.success};`,
+            `color: #1d8242;`,`color: #1d8242;text-decoration:underline;`,`color: #1d8242;`,
+          );
+          if (!(window as any).webCheck) (window as any).webCheck = {};
+          if (data) (window as any).webCheck[job] = data;
         }
-        return loadingJob;
+
+        if (newState === 'error') {
+          console.log(
+            `%c获取错误 - ${job}%c\n\n${timeString}%c ${job} 任务在 ${timeTaken}ms 后失败，错误如下:%c\n${error}`,
+            `background: ${colors.danger}; color:${colors.background}; padding: 4px 8px; font-size: 16px;`,
+            `font-weight: bold; color: ${colors.danger};`,
+            `color: ${colors.danger};`,
+            `color: ${colors.warning};`,
+          );
+        }
+
+        if (newState === 'timed-out') {
+          console.log(
+            `%c获取超时 - ${job}%c\n\n${timeString}%c ${job} 任务在 ${timeTaken}ms 后超时，错误如下:%c\n${error}`,
+            `background: ${colors.info}; color:${colors.background}; padding: 4px 8px; font-size: 16px;`,
+            `font-weight: bold; color: ${colors.info};`,
+            `color: ${colors.info};`,
+            `color: ${colors.warning};`,
+          );
+        }
+
+        return newJobs;
       });
-
-      const timeString = `[${now.getHours().toString().padStart(2, '0')}:`
-        +`${now.getMinutes().toString().padStart(2, '0')}:`
-        + `${now.getSeconds().toString().padStart(2, '0')}]`;
-
-
-      if (newState === 'success') {
-        console.log(
-          `%cFetch Success - ${job}%c\n\n${timeString}%c The ${job} job succeeded in ${timeTaken}ms`
-          + `\n%cRun %cwindow.webCheck['${job}']%c to inspect the raw the results`,
-          `background:${colors.success};color:${colors.background};padding: 4px 8px;font-size:16px;`,
-          `font-weight: bold; color: ${colors.success};`,
-          `color: ${colors.success};`,
-          `color: #1d8242;`,`color: #1d8242;text-decoration:underline;`,`color: #1d8242;`,
-        );
-        if (!(window as any).webCheck) (window as any).webCheck = {};
-        if (data) (window as any).webCheck[job] = data;
-      }
-  
-      if (newState === 'error') {
-        console.log(
-          `%cFetch Error - ${job}%c\n\n${timeString}%c The ${job} job failed `
-          +`after ${timeTaken}ms, with the following error:%c\n${error}`,
-          `background: ${colors.danger}; color:${colors.background}; padding: 4px 8px; font-size: 16px;`,
-          `font-weight: bold; color: ${colors.danger};`,
-          `color: ${colors.danger};`,
-          `color: ${colors.warning};`,
-        );
-      }
-
-      if (newState === 'timed-out') {
-        console.log(
-          `%cFetch Timeout - ${job}%c\n\n${timeString}%c The ${job} job timed out `
-          +`after ${timeTaken}ms, with the following error:%c\n${error}`,
-          `background: ${colors.info}; color:${colors.background}; padding: 4px 8px; font-size: 16px;`,
-          `font-weight: bold; color: ${colors.info};`,
-          `color: ${colors.info};`,
-          `color: ${colors.warning};`,
-        );
-      }
-
-      return newJobs;
     });
-  });
   }, [startTime]);
 
   const parseJson = (response: Response): Promise<any> => {
     return new Promise((resolve) => {
-        response.json()
-          .then(data => resolve(data))
-          .catch(error => resolve(
-            { error: `Failed to get a valid response 😢\n`
-            + 'This is likely due the target not exposing the required data, '
-            + 'or limitations in imposed by the infrastructure this instance '
-            + 'of Web Check is running on.\n\n'
-            + `Error info:\n${error}`}
-          ));
+      response.json()
+        .then(data => resolve(data))
+        .catch(error => resolve(
+          { error: `无法获取有效响应 😢\n`
+          + '这可能是因为目标未暴露所需数据，'
+          + '或 Web Check 当前运行的基础设施施加了限制。\n\n'
+          + `错误信息:\n${error}`}
+        ));
     });
   };
 
-  const urlTypeOnly = ['url'] as AddressType[]; // Many jobs only run with these address types
+  const urlTypeOnly = ['url'] as AddressType[];
+  const api = import.meta.env.PUBLIC_API_ENDPOINT || '/api';
 
-  const api = import.meta.env.PUBLIC_API_ENDPOINT || '/api'; // Where is the API hosted?
-  
-  // Fetch and parse IP address for given URL
   const [ipAddress, setIpAddress] = useMotherHook({
     jobId: 'get-ip',
     updateLoadingJobs,
     addressInfo: { address, addressType, expectedAddressTypes: urlTypeOnly },
     fetchRequest: () => fetch(`${api}/get-ip?url=${address}`)
-    .then(res => parseJson(res))
-    .then(res => res.ip),
+      .then(res => parseJson(res))
+      .then(res => res.ip),
   });
 
   useEffect(() => {
@@ -267,9 +258,8 @@ const Results = (props: { address?: string } ): JSX.Element => {
     if (addressType === 'ipV4' && address) {
       setIpAddress(address);
     }
-  }, [address, addressType, setIpAddress]);  
+  }, [address, addressType, setIpAddress]);
 
-  // Get IP address location info
   const [locationResults, updateLocationResults] = useMotherHook<ServerLocation>({
     jobId: 'location',
     updateLoadingJobs,
@@ -279,7 +269,6 @@ const Results = (props: { address?: string } ): JSX.Element => {
       .then(res => getLocation(res)),
   });
 
-  // Fetch and parse SSL certificate info
   const [sslResults, updateSslResults] = useMotherHook({
     jobId: 'ssl',
     updateLoadingJobs,
@@ -287,7 +276,6 @@ const Results = (props: { address?: string } ): JSX.Element => {
     fetchRequest: () => fetch(`${api}/ssl?url=${address}`).then((res) => parseJson(res)),
   });
 
-  // Run a manual whois lookup on the domain
   const [domainLookupResults, updateDomainLookupResults] = useMotherHook({
     jobId: 'domain',
     updateLoadingJobs,
@@ -295,17 +283,15 @@ const Results = (props: { address?: string } ): JSX.Element => {
     fetchRequest: () => fetch(`${api}/whois?url=${address}`).then(res => parseJson(res)),
   });
 
-  // Fetch and parse Lighthouse performance data
   const [lighthouseResults, updateLighthouseResults] = useMotherHook({
     jobId: 'quality',
     updateLoadingJobs,
     addressInfo: { address, addressType, expectedAddressTypes: urlTypeOnly },
     fetchRequest: () => fetch(`${api}/quality?url=${address}`)
       .then(res => parseJson(res))
-      .then(res => res?.lighthouseResult || { error: res.error || 'No Data' }),
+      .then(res => res?.lighthouseResult || { error: res.error || '无数据' }),
   });
 
-  // Get the technologies used to build site, using Wappalyzer
   const [techStackResults, updateTechStackResults] = useMotherHook({
     jobId: 'tech-stack',
     updateLoadingJobs,
@@ -313,7 +299,6 @@ const Results = (props: { address?: string } ): JSX.Element => {
     fetchRequest: () => fetch(`${api}/tech-stack?url=${address}`).then(res => parseJson(res)),
   });
 
-  // Get hostnames and associated domains from Shodan
   const [shoadnResults, updateShodanResults] = useMotherHook<ShodanResults>({
     jobId: ['hosts', 'server-info'],
     updateLoadingJobs,
@@ -323,7 +308,6 @@ const Results = (props: { address?: string } ): JSX.Element => {
       .then(res => parseShodanResults(res)),
   });
 
-  // Fetch and parse cookies info
   const [cookieResults, updateCookieResults] = useMotherHook<{cookies: Cookie[]}>({
     jobId: 'cookies',
     updateLoadingJobs,
@@ -332,7 +316,6 @@ const Results = (props: { address?: string } ): JSX.Element => {
       .then(res => parseJson(res)),
   });
 
-  // Fetch and parse headers
   const [headersResults, updateHeadersResults] = useMotherHook({
     jobId: 'headers',
     updateLoadingJobs,
@@ -340,7 +323,6 @@ const Results = (props: { address?: string } ): JSX.Element => {
     fetchRequest: () => fetch(`${api}/headers?url=${address}`).then(res => parseJson(res)),
   });
 
-  // Fetch and parse DNS records
   const [dnsResults, updateDnsResults] = useMotherHook({
     jobId: 'dns',
     updateLoadingJobs,
@@ -348,7 +330,6 @@ const Results = (props: { address?: string } ): JSX.Element => {
     fetchRequest: () => fetch(`${api}/dns?url=${address}`).then(res => parseJson(res)),
   });
 
-  // Get HTTP security
   const [httpSecurityResults, updateHttpSecurityResults] = useMotherHook({
     jobId: 'http-security',
     updateLoadingJobs,
@@ -356,7 +337,6 @@ const Results = (props: { address?: string } ): JSX.Element => {
     fetchRequest: () => fetch(`${api}/http-security?url=${address}`).then(res => parseJson(res)),
   });
 
-  // Get social media previews, from a sites social meta tags
   const [socialTagResults, updateSocialTagResults] = useMotherHook({
     jobId: 'social-tags',
     updateLoadingJobs,
@@ -364,7 +344,6 @@ const Results = (props: { address?: string } ): JSX.Element => {
     fetchRequest: () => fetch(`${api}/social-tags?url=${address}`).then(res => parseJson(res)),
   });
 
-  // Get trace route for a given hostname
   const [traceRouteResults, updateTraceRouteResults] = useMotherHook({
     jobId: 'trace-route',
     updateLoadingJobs,
@@ -372,7 +351,6 @@ const Results = (props: { address?: string } ): JSX.Element => {
     fetchRequest: () => fetch(`${api}/trace-route?url=${address}`).then(res => parseJson(res)),
   });
 
-  // Get a websites listed pages, from sitemap
   const [securityTxtResults, updateSecurityTxtResults] = useMotherHook({
     jobId: 'security-txt',
     updateLoadingJobs,
@@ -380,7 +358,6 @@ const Results = (props: { address?: string } ): JSX.Element => {
     fetchRequest: () => fetch(`${api}/security-txt?url=${address}`).then(res => parseJson(res)),
   });
 
-  // Get the DNS server(s) for a domain, and test DoH/DoT support
   const [dnsServerResults, updateDnsServerResults] = useMotherHook({
     jobId: 'dns-server',
     updateLoadingJobs,
@@ -388,7 +365,6 @@ const Results = (props: { address?: string } ): JSX.Element => {
     fetchRequest: () => fetch(`${api}/dns-server?url=${address}`).then(res => parseJson(res)),
   });
 
-  // Get the WAF and Firewall info for a site
   const [firewallResults, updateFirewallResults] = useMotherHook({
     jobId: 'firewall',
     updateLoadingJobs,
@@ -396,7 +372,6 @@ const Results = (props: { address?: string } ): JSX.Element => {
     fetchRequest: () => fetch(`${api}/firewall?url=${address}`).then(res => parseJson(res)),
   });
 
-  // Get DNSSEC info
   const [dnsSecResults, updateDnsSecResults] = useMotherHook({
     jobId: 'dnssec',
     updateLoadingJobs,
@@ -404,7 +379,6 @@ const Results = (props: { address?: string } ): JSX.Element => {
     fetchRequest: () => fetch(`${api}/dnssec?url=${address}`).then(res => parseJson(res)),
   });
 
-  // Check if a site is on the HSTS preload list
   const [hstsResults, updateHstsResults] = useMotherHook({
     jobId: 'hsts',
     updateLoadingJobs,
@@ -412,7 +386,6 @@ const Results = (props: { address?: string } ): JSX.Element => {
     fetchRequest: () => fetch(`${api}/hsts?url=${address}`).then(res => parseJson(res)),
   });
 
-  // Check if a host is present on the URLHaus malware list
   const [threatResults, updateThreatResults] = useMotherHook({
     jobId: 'threats',
     updateLoadingJobs,
@@ -420,7 +393,6 @@ const Results = (props: { address?: string } ): JSX.Element => {
     fetchRequest: () => fetch(`${api}/threats?url=${address}`).then(res => parseJson(res)),
   });
 
-  // Get mail config for server, based on DNS records
   const [mailConfigResults, updateMailConfigResults] = useMotherHook({
     jobId: 'mail-config',
     updateLoadingJobs,
@@ -428,7 +400,6 @@ const Results = (props: { address?: string } ): JSX.Element => {
     fetchRequest: () => fetch(`${api}/mail-config?url=${address}`).then(res => parseJson(res)),
   });
 
-  // Get list of archives from the Wayback Machine
   const [archivesResults, updateArchivesResults] = useMotherHook({
     jobId: 'archives',
     updateLoadingJobs,
@@ -436,7 +407,6 @@ const Results = (props: { address?: string } ): JSX.Element => {
     fetchRequest: () => fetch(`${api}/archives?url=${address}`).then(res => parseJson(res)),
   });
 
-  // Get website's global ranking, from Tranco
   const [rankResults, updateRankResults] = useMotherHook({
     jobId: 'rank',
     updateLoadingJobs,
@@ -444,7 +414,6 @@ const Results = (props: { address?: string } ): JSX.Element => {
     fetchRequest: () => fetch(`${api}/rank?url=${address}`).then(res => parseJson(res)),
   });
 
-  // Take a screenshot of the website
   const [screenshotResult, updateScreenshotResult] = useMotherHook({
     jobId: 'screenshot',
     updateLoadingJobs,
@@ -452,7 +421,6 @@ const Results = (props: { address?: string } ): JSX.Element => {
     fetchRequest: () => fetch(`${api}/screenshot?url=${address}`).then(res => parseJson(res)),
   });
 
-  // Get TLS security info, from Mozilla Observatory
   const [tlsResults, updateTlsResults] = useMotherHook({
     jobId: ['tls-cipher-suites', 'tls-security-config', 'tls-client-support'],
     updateLoadingJobs,
@@ -460,7 +428,6 @@ const Results = (props: { address?: string } ): JSX.Element => {
     fetchRequest: () => fetch(`${api}/tls?url=${address}`).then(res => parseJson(res)),
   });
 
-  // Fetches URL redirects
   const [redirectResults, updateRedirectResults] = useMotherHook({
     jobId: 'redirects',
     updateLoadingJobs,
@@ -468,7 +435,6 @@ const Results = (props: { address?: string } ): JSX.Element => {
     fetchRequest: () => fetch(`${api}/redirects?url=${address}`).then(res => parseJson(res)),
   });
 
-  // Get list of links included in the page content
   const [linkedPagesResults, updateLinkedPagesResults] = useMotherHook({
     jobId: 'linked-pages',
     updateLoadingJobs,
@@ -476,7 +442,6 @@ const Results = (props: { address?: string } ): JSX.Element => {
     fetchRequest: () => fetch(`${api}/linked-pages?url=${address}`).then(res => parseJson(res)),
   });
 
-  // Fetch and parse crawl rules from robots.txt
   const [robotsTxtResults, updateRobotsTxtResults] = useMotherHook<{robots: RowProps[]}>({
     jobId: 'robots-txt',
     updateLoadingJobs,
@@ -485,7 +450,6 @@ const Results = (props: { address?: string } ): JSX.Element => {
       .then(res => parseJson(res)),
   });
 
-  // Get current status and response time of server
   const [serverStatusResults, updateServerStatusResults] = useMotherHook({
     jobId: 'status',
     updateLoadingJobs,
@@ -493,7 +457,6 @@ const Results = (props: { address?: string } ): JSX.Element => {
     fetchRequest: () => fetch(`${api}/status?url=${address}`).then(res => parseJson(res)),
   });
 
-  // Check for open ports
   const [portsResults, updatePortsResults] = useMotherHook({
     jobId: 'ports',
     updateLoadingJobs,
@@ -502,7 +465,6 @@ const Results = (props: { address?: string } ): JSX.Element => {
       .then(res => parseJson(res)),
   });
 
-  // Fetch and parse domain whois results
   const [whoIsResults, updateWhoIsResults] = useMotherHook<Whois | { error: string }>({
     jobId: 'whois',
     updateLoadingJobs,
@@ -512,7 +474,6 @@ const Results = (props: { address?: string } ): JSX.Element => {
       .then(res => applyWhoIsResults(res)),
   });
 
-  // Fetches DNS TXT records
   const [txtRecordResults, updateTxtRecordResults] = useMotherHook({
     jobId: 'txt-records',
     updateLoadingJobs,
@@ -520,7 +481,6 @@ const Results = (props: { address?: string } ): JSX.Element => {
     fetchRequest: () => fetch(`${api}/txt-records?url=${address}`).then(res => parseJson(res)),
   });
 
-  // Check site against DNS blocklists
   const [blockListsResults, updateBlockListsResults] = useMotherHook({
     jobId: 'block-lists',
     updateLoadingJobs,
@@ -528,7 +488,6 @@ const Results = (props: { address?: string } ): JSX.Element => {
     fetchRequest: () => fetch(`${api}/block-lists?url=${address}`).then(res => parseJson(res)),
   });
 
-  // Get a websites listed pages, from sitemap
   const [sitemapResults, updateSitemapResults] = useMotherHook({
     jobId: 'sitemap',
     updateLoadingJobs,
@@ -536,7 +495,6 @@ const Results = (props: { address?: string } ): JSX.Element => {
     fetchRequest: () => fetch(`${api}/sitemap?url=${address}`).then(res => parseJson(res)),
   });
 
-  // Fetch carbon footprint data for a given site
   const [carbonResults, updateCarbonResults] = useMotherHook({
     jobId: 'carbon',
     updateLoadingJobs,
@@ -544,22 +502,20 @@ const Results = (props: { address?: string } ): JSX.Element => {
     fetchRequest: () => fetch(`${api}/carbon?url=${address}`).then(res => parseJson(res)),
   });
 
-  // Get site features from BuiltWith
   const [siteFeaturesResults, updateSiteFeaturesResults] = useMotherHook({
     jobId: 'features',
     updateLoadingJobs,
     addressInfo: { address, addressType, expectedAddressTypes: urlTypeOnly },
     fetchRequest: () => fetch(`${api}/features?url=${address}`)
-    .then(res => parseJson(res))
-    .then(res => {
-      if (res.Errors && res.Errors.length > 0) {
-        return { error: `No data returned, because ${res.Errors[0].Message || 'API lookup failed'}` };
-      }
-      return res;
-    }),
+      .then(res => parseJson(res))
+      .then(res => {
+        if (res.Errors && res.Errors.length > 0) {
+          return { error: `没有返回数据，因为 ${res.Errors[0].Message || 'API 查询失败'}` };
+        }
+        return res;
+      }),
   });
 
-  /* Cancel remaining jobs after  10 second timeout */
   useEffect(() => {
     const checkJobs = () => {
       loadingJobs.forEach(job => {
@@ -582,278 +538,52 @@ const Results = (props: { address?: string } ): JSX.Element => {
     }
   }
 
-  // A list of state sata, corresponding component and title for each card
   const resultCardData = [
-    {
-      id: 'location',
-      title: 'Server Location',
-      result: locationResults,
-      Component: ServerLocationCard,
-      refresh: updateLocationResults,
-      tags: ['server'],
-    }, {
-      id: 'ssl',
-      title: 'SSL Certificate',
-      result: sslResults,
-      Component: SslCertCard,
-      refresh: updateSslResults,
-      tags: ['server', 'security'],
-    }, {
-      id: 'domain',
-      title: 'Domain Whois',
-      result: domainLookupResults,
-      Component: DomainLookup,
-      refresh: updateDomainLookupResults,
-      tags: ['server'],
-    }, {
-      id: 'quality',
-      title: 'Quality Summary',
-      result: lighthouseResults,
-      Component: LighthouseCard,
-      refresh: updateLighthouseResults,
-      tags: ['client'],
-    }, {
-      id: 'tech-stack',
-      title: 'Tech Stack',
-      result: techStackResults,
-      Component: TechStackCard,
-      refresh: updateTechStackResults,
-      tags: ['client', 'meta'],
-    }, {
-      id: 'server-info',
-      title: 'Server Info',
-      result: shoadnResults?.serverInfo,
-      Component: ServerInfoCard,
-      refresh: updateShodanResults,
-      tags: ['server'],
-    }, {
-      id: 'cookies',
-      title: 'Cookies',
-      result: cookieResults,
-      Component: CookiesCard,
-      refresh: updateCookieResults,
-      tags: ['client', 'security'],
-    }, {
-      id: 'headers',
-      title: 'Headers',
-      result: headersResults,
-      Component: HeadersCard,
-      refresh: updateHeadersResults,
-      tags: ['client', 'security'],
-    }, {
-      id: 'dns',
-      title: 'DNS Records',
-      result: dnsResults,
-      Component: DnsRecordsCard,
-      refresh: updateDnsResults,
-      tags: ['server'],
-    }, {
-      id: 'hosts',
-      title: 'Host Names',
-      result: shoadnResults?.hostnames,
-      Component: HostNamesCard,
-      refresh: updateShodanResults,
-      tags: ['server'],
-    }, {
-      id: 'http-security',
-      title: 'HTTP Security',
-      result: httpSecurityResults,
-      Component: HttpSecurityCard,
-      refresh: updateHttpSecurityResults,
-      tags: ['security'],
-    }, {
-      id: 'social-tags',
-      title: 'Social Tags',
-      result: socialTagResults,
-      Component: SocialTagsCard,
-      refresh: updateSocialTagResults,
-      tags: ['client', 'meta'],
-    }, {
-      id: 'trace-route',
-      title: 'Trace Route',
-      result: traceRouteResults,
-      Component: TraceRouteCard,
-      refresh: updateTraceRouteResults,
-      tags: ['server'],
-    }, {
-      id: 'security-txt',
-      title: 'Security.Txt',
-      result: securityTxtResults,
-      Component: SecurityTxtCard,
-      refresh: updateSecurityTxtResults,
-      tags: ['security'],
-    }, {
-      id: 'dns-server',
-      title: 'DNS Server',
-      result: dnsServerResults,
-      Component: DnsServerCard,
-      refresh: updateDnsServerResults,
-      tags: ['server'],
-    }, {
-      id: 'firewall',
-      title: 'Firewall',
-      result: firewallResults,
-      Component: FirewallCard,
-      refresh: updateFirewallResults,
-      tags: ['server', 'security'],
-    }, {
-      id: 'dnssec',
-      title: 'DNSSEC',
-      result: dnsSecResults,
-      Component: DnsSecCard,
-      refresh: updateDnsSecResults,
-      tags: ['security'],
-    }, {
-      id: 'hsts',
-      title: 'HSTS Check',
-      result: hstsResults,
-      Component: HstsCard,
-      refresh: updateHstsResults,
-      tags: ['security'],
-    }, {
-      id: 'threats',
-      title: 'Threats',
-      result: threatResults,
-      Component: ThreatsCard,
-      refresh: updateThreatResults,
-      tags: ['security'],
-    }, {
-      id: 'mail-config',
-      title: 'Email Configuration',
-      result: mailConfigResults,
-      Component: MailConfigCard,
-      refresh: updateMailConfigResults,
-      tags: ['server'],
-    }, {
-      id: 'archives',
-      title: 'Archive History',
-      result: archivesResults,
-      Component: ArchivesCard,
-      refresh: updateArchivesResults,
-      tags: ['meta'],
-    }, {
-      id: 'rank',
-      title: 'Global Ranking',
-      result: rankResults,
-      Component: RankCard,
-      refresh: updateRankResults,
-      tags: ['meta'],
-    }, {
-      id: 'screenshot',
-      title: 'Screenshot',
-      result: screenshotResult || lighthouseResults?.fullPageScreenshot?.screenshot,
-      Component: ScreenshotCard,
-      refresh: updateScreenshotResult,
-      tags: ['client', 'meta'],
-    }, {
-      id: 'tls-cipher-suites',
-      title: 'TLS Cipher Suites',
-      result: tlsResults,
-      Component: TlsCipherSuitesCard,
-      refresh: updateTlsResults,
-      tags: ['server', 'security'],
-    }, {
-      id: 'tls-security-config',
-      title: 'TLS Security Issues',
-      result: tlsResults,
-      Component: TlsIssueAnalysisCard,
-      refresh: updateTlsResults,
-      tags: ['security'],
-    }, {
-      id: 'tls-client-support',
-      title: 'TLS Handshake Simulation',
-      result: tlsResults,
-      Component: TlsClientSupportCard,
-      refresh: updateTlsResults,
-      tags: ['security'],
-    }, {
-      id: 'redirects',
-      title: 'Redirects',
-      result: redirectResults,
-      Component: RedirectsCard,
-      refresh: updateRedirectResults,
-      tags: ['meta'],
-    }, {
-      id: 'linked-pages',
-      title: 'Linked Pages',
-      result: linkedPagesResults,
-      Component: ContentLinksCard,
-      refresh: updateLinkedPagesResults,
-      tags: ['client', 'meta'],
-    }, {
-      id: 'robots-txt',
-      title: 'Crawl Rules',
-      result: robotsTxtResults,
-      Component: RobotsTxtCard,
-      refresh: updateRobotsTxtResults,
-      tags: ['meta'],
-    }, {
-      id: 'status',
-      title: 'Server Status',
-      result: serverStatusResults,
-      Component: ServerStatusCard,
-      refresh: updateServerStatusResults,
-      tags: ['server'],
-    }, {
-      id: 'ports',
-      title: 'Open Ports',
-      result: portsResults,
-      Component: OpenPortsCard,
-      refresh: updatePortsResults,
-      tags: ['server'],
-    }, {
-      id: 'whois',
-      title: 'Domain Info',
-      result: whoIsResults,
-      Component: WhoIsCard,
-      refresh: updateWhoIsResults,
-      tags: ['server'],
-    }, {
-      id: 'txt-records',
-      title: 'TXT Records',
-      result: txtRecordResults,
-      Component: TxtRecordCard,
-      refresh: updateTxtRecordResults,
-      tags: ['server'],
-    }, {
-      id: 'block-lists',
-      title: 'Block Lists',
-      result: blockListsResults,
-      Component: BlockListsCard,
-      refresh: updateBlockListsResults,
-      tags: ['security', 'meta'],
-    }, {
-      id: 'features',
-      title: 'Site Features',
-      result: siteFeaturesResults,
-      Component: SiteFeaturesCard,
-      refresh: updateSiteFeaturesResults,
-      tags: ['meta'],
-    }, {
-      id: 'sitemap',
-      title: 'Pages',
-      result: sitemapResults,
-      Component: SitemapCard,
-      refresh: updateSitemapResults,
-      tags: ['meta'],
-    }, {
-      id: 'carbon',
-      title: 'Carbon Footprint',
-      result: carbonResults,
-      Component: CarbonFootprintCard,
-      refresh: updateCarbonResults,
-      tags: ['meta'],
-    },
+    { id: 'location', title: '服务器位置', result: locationResults, Component: ServerLocationCard, refresh: updateLocationResults, tags: ['服务器'] },
+    { id: 'ssl', title: 'SSL 证书', result: sslResults, Component: SslCertCard, refresh: updateSslResults, tags: ['服务器', '安全'] },
+    { id: 'domain', title: '域名 Whois', result: domainLookupResults, Component: DomainLookup, refresh: updateDomainLookupResults, tags: ['服务器'] },
+    { id: 'quality', title: '质量摘要', result: lighthouseResults, Component: LighthouseCard, refresh: updateLighthouseResults, tags: ['客户端'] },
+    { id: 'tech-stack', title: '技术栈', result: techStackResults, Component: TechStackCard, refresh: updateTechStackResults, tags: ['客户端', '元数据'] },
+    { id: 'server-info', title: '服务器信息', result: shoadnResults?.serverInfo, Component: ServerInfoCard, refresh: updateShodanResults, tags: ['服务器'] },
+    { id: 'cookies', title: 'Cookie', result: cookieResults, Component: CookiesCard, refresh: updateCookieResults, tags: ['客户端', '安全'] },
+    { id: 'headers', title: 'headers', result: headersResults, Component: HeadersCard, refresh: updateHeadersResults, tags: ['客户端', '安全'] },
+    { id: 'dns', title: 'DNS 记录', result: dnsResults, Component: DnsRecordsCard, refresh: updateDnsResults, tags: ['服务器'] },
+    { id: 'hosts', title: '主机名', result: shoadnResults?.hostnames, Component: HostNamesCard, refresh: updateShodanResults, tags: ['服务器'] },
+    { id: 'http-security', title: 'HTTP 安全', result: httpSecurityResults, Component: HttpSecurityCard, refresh: updateHttpSecurityResults, tags: ['安全'] },
+    { id: 'social-tags', title: '社交标签', result: socialTagResults, Component: SocialTagsCard, refresh: updateSocialTagResults, tags: ['客户端', '元数据'] },
+    { id: 'trace-route', title: '跟踪路由', result: traceRouteResults, Component: TraceRouteCard, refresh: updateTraceRouteResults, tags: ['服务器'] },
+    { id: 'security-txt', title: 'Security-Txt', result: securityTxtResults, Component: SecurityTxtCard, refresh: updateSecurityTxtResults, tags: ['安全'] },
+    { id: 'dns-server', title: 'DNS 服务器', result: dnsServerResults, Component: DnsServerCard, refresh: updateDnsServerResults, tags: ['服务器'] },
+    { id: 'firewall', title: '防火墙', result: firewallResults, Component: FirewallCard, refresh: updateFirewallResults, tags: ['服务器', '安全'] },
+    { id: 'dnssec', title: 'DNSSEC', result: dnsSecResults, Component: DnsSecCard, refresh: updateDnsSecResults, tags: ['安全'] },
+    { id: 'hsts', title: 'HSTS 检查', result: hstsResults, Component: HstsCard, refresh: updateHstsResults, tags: ['安全'] },
+    { id: 'threats', title: '威胁', result: threatResults, Component: ThreatsCard, refresh: updateThreatResults, tags: ['安全'] },
+    { id: 'mail-config', title: '电子邮件配置', result: mailConfigResults, Component: MailConfigCard, refresh: updateMailConfigResults, tags: ['服务器'] },
+    { id: 'archives', title: '归档历史', result: archivesResults, Component: ArchivesCard, refresh: updateArchivesResults, tags: ['元数据'] },
+    { id: 'rank', title: '全球排名', result: rankResults, Component: RankCard, refresh: updateRankResults, tags: ['元数据'] },
+    { id: 'screenshot', title: '屏幕截图', result: screenshotResult || lighthouseResults?.fullPageScreenshot?.screenshot, Component: ScreenshotCard, refresh: updateScreenshotResult, tags: ['客户端', '元数据'] },
+    { id: 'tls-cipher-suites', title: 'TLS 密码套件', result: tlsResults, Component: TlsCipherSuitesCard, refresh: updateTlsResults, tags: ['服务器', '安全'] },
+    { id: 'tls-security-config', title: 'TLS 安全问题', result: tlsResults, Component: TlsIssueAnalysisCard, refresh: updateTlsResults, tags: ['安全'] },
+    { id: 'tls-client-support', title: 'TLS 握手模拟', result: tlsResults, Component: TlsClientSupportCard, refresh: updateTlsResults, tags: ['安全'] },
+    { id: 'redirects', title: '重定向', result: redirectResults, Component: RedirectsCard, refresh: updateRedirectResults, tags: ['元数据'] },
+    { id: 'linked-pages', title: '链接页面', result: linkedPagesResults, Component: ContentLinksCard, refresh: updateLinkedPagesResults, tags: ['客户端', '元数据'] },
+    { id: 'robots-txt', title: '爬行规则', result: robotsTxtResults, Component: RobotsTxtCard, refresh: updateRobotsTxtResults, tags: ['元数据'] },
+    { id: 'status', title: '服务器状态', result: serverStatusResults, Component: ServerStatusCard, refresh: updateServerStatusResults, tags: ['服务器'] },
+    { id: 'ports', title: '开放端口', result: portsResults, Component: OpenPortsCard, refresh: updatePortsResults, tags: ['服务器'] },
+    { id: 'whois', title: '域名信息', result: whoIsResults, Component: WhoIsCard, refresh: updateWhoIsResults, tags: ['服务器'] },
+    { id: 'txt-records', title: 'TXT 记录', result: txtRecordResults, Component: TxtRecordCard, refresh: updateTxtRecordResults, tags: ['服务器'] },
+    { id: 'block-lists', title: 'block阻止列表', result: blockListsResults, Component: BlockListsCard, refresh: updateBlockListsResults, tags: ['安全', '元数据'] },
+    { id: 'features', title: '功能', result: siteFeaturesResults, Component: SiteFeaturesCard, refresh: updateSiteFeaturesResults, tags: ['元数据'] },
+    { id: 'sitemap', title: 'sitemap', result: sitemapResults, Component: SitemapCard, refresh: updateSitemapResults, tags: ['元数据'] },
+    { id: 'carbon', title: 'Carbon Footprint', result: carbonResults, Component: CarbonFootprintCard, refresh: updateCarbonResults, tags: ['元数据'] },
   ];
 
   const makeActionButtons = (title: string, refresh: () => void, showInfo: (id: string) => void): ReactNode => {
     const actions = [
-      { label: `Info about ${title}`, onClick: showInfo, icon: 'ⓘ'},
-      { label: `Re-fetch ${title} data`, onClick: refresh, icon: '↻'},
+      { label: `关于 ${title} 的信息`, onClick: showInfo, icon: 'ⓘ' },
+      { label: `重新获取 ${title} 数据`, onClick: refresh, icon: '↻' },
     ];
-    return (
-      <ActionButtons actions={actions} />
-    );
+    return <ActionButtons actions={actions} />;
   };
 
   const showInfo = (id: string) => {
@@ -865,81 +595,91 @@ const Results = (props: { address?: string } ): JSX.Element => {
     setModalContent(content);
     setModalOpen(true);
   };
-  
+
   return (
     <ResultsOuter>
       <Nav>
-      { address && 
-        <Heading color={colors.textColor} size="medium">
-          { addressType === 'url' && <a target="_blank" rel="noreferrer" href={address}><img width="32px" src={`https://icon.horse/icon/${makeSiteName(address)}`} alt="" /></a> }
-          {makeSiteName(address)}
-        </Heading>
-        }
+        {address && (
+          <Heading color={colors.textColor} size="medium">
+            {addressType === 'url' && (
+              <a target="_blank" rel="noreferrer" href={address}>
+                <img width="32px" src={`https://icon.horse/icon/${makeSiteName(address)}`} alt="" />
+              </a>
+            )}
+            {makeSiteName(address)}
+          </Heading>
+        )}
       </Nav>
       <ProgressBar loadStatus={loadingJobs} showModal={showErrorModal} showJobDocs={showInfo} />
-      {/* { address?.includes(window?.location?.hostname || 'web-check.xyz') && <SelfScanMsg />} */}
       <Loader show={loadingJobs.filter((job: LoadingJob) => job.state !== 'loading').length < 5} />
-      <FilterButtons>{ showFilters ? <>
-        <div className="one-half">
-        <span className="group-label">Filter by</span>
-        {['server', 'client', 'meta'].map((tag: string) => (
-          <button
-            key={tag}
-            className={tags.includes(tag) ? 'selected' : ''}
-            onClick={() => updateTags(tag)}>
-              {tag}
-          </button>
-        ))}
-        {(tags.length > 0 || searchTerm.length > 0) && <span onClick={clearFilters} className="clear">Clear Filters</span> }
-        </div>
-        <div className="one-half">
-        <span className="group-label">Search</span>
-        <input 
-          type="text" 
-          placeholder="Filter Results" 
-          value={searchTerm} 
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
-        <span className="toggle-filters" onClick={() => setShowFilters(false)}>Hide</span>
-        </div>
-        </> : (
+      <FilterButtons>
+        {showFilters ? (
+          <>
+            <div className="one-half">
+              <span className="group-label">过滤</span>
+              {['服务器', '客户端', '元数据'].map((tag: string) => (
+                <button
+                  key={tag}
+                  className={tags.includes(tag) ? 'selected' : ''}
+                  onClick={() => updateTags(tag)}
+                >
+                  {tag}
+                </button>
+              ))}
+              {(tags.length > 0 || searchTerm.length > 0) && (
+                <span onClick={clearFilters} className="clear">清除过滤</span>
+              )}
+            </div>
+            <div className="one-half">
+              <span className="group-label">搜索</span>
+              <input
+                type="text"
+                placeholder="过滤结果"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+              <span className="toggle-filters" onClick={() => setShowFilters(false)}>隐藏</span>
+            </div>
+          </>
+        ) : (
           <div className="control-options">
-            <span className="toggle-filters" onClick={() => setShowFilters(true)}>Show Filters</span>
-            <a href="#view-download-raw-data"><span className="toggle-filters">Export Data</span></a>
-            <a href="/about"><span className="toggle-filters">Learn about the Results</span></a>
-            <a href="/about#additional-resources"><span className="toggle-filters">More tools</span></a>
-            <a target="_blank" rel="noreferrer" href="https://github.com/lissy93/web-check"><span className="toggle-filters">View GitHub</span></a>
+            <span className="toggle-filters" onClick={() => setShowFilters(true)}>显示过滤</span>
+            <a href="#view-download-raw-data"><span className="toggle-filters">导出数据</span></a>
+            <a href="/about"><span className="toggle-filters">了解结果</span></a>
+            <a href="/about#additional-resources"><span className="toggle-filters">更多工具</span></a>
+            <a target="_blank" rel="noreferrer" href="https://github.com/lissy93/web-check">
+              <span className="toggle-filters">查看 GitHub</span>
+            </a>
           </div>
-      ) }
+        )}
       </FilterButtons>
       <ResultsContent>
         <Masonry
           breakpointCols={{ 10000: 12, 4000: 9, 3600: 8, 3200: 7, 2800: 6, 2400: 5, 2000: 4, 1600: 3, 1200: 2, 800: 1 }}
           className="masonry-grid"
-          columnClassName="masonry-grid-col">
-          {
-            resultCardData
-            .map(({ id, title, result, tags, refresh, Component }, index: number) => {
-              const show = (tags.length === 0 || tags.some(tag => tags.includes(tag)))
+          columnClassName="masonry-grid-col"
+        >
+          {resultCardData.map(({ id, title, result, tags, refresh, Component }, index: number) => {
+            const show = (tags.length === 0 || tags.some(tag => tags.includes(tag)))
               && title.toLowerCase().includes(searchTerm.toLowerCase())
               && (result && !result.error);
-              return show ? (
-                <ErrorBoundary title={title} key={`eb-${index}`}>
-                  <Component
-                    key={`${title}-${index}`}
-                    data={{...result}}
-                    title={title}
-                    actionButtons={refresh ? makeActionButtons(title, refresh, () => showInfo(id)) : undefined}
-                  />
-                </ErrorBoundary>
-            ) : null})
-          }
-          </Masonry>
+            return show ? (
+              <ErrorBoundary title={title} key={`eb-${index}`}>
+                <Component
+                  key={`${title}-${index}`}
+                  data={{ ...result }}
+                  title={title}
+                  actionButtons={refresh ? makeActionButtons(title, refresh, () => showInfo(id)) : undefined}
+                />
+              </ErrorBoundary>
+            ) : null;
+          })}
+        </Masonry>
       </ResultsContent>
       <ViewRaw everything={resultCardData} />
       <AdditionalResources url={address} />
       <Footer />
-      <Modal isOpen={modalOpen} closeModal={()=> setModalOpen(false)}>{modalContent}</Modal>
+      <Modal isOpen={modalOpen} closeModal={() => setModalOpen(false)}>{modalContent}</Modal>
       <ToastContainer limit={3} draggablePercent={60} autoClose={2500} theme="dark" position="bottom-right" />
     </ResultsOuter>
   );

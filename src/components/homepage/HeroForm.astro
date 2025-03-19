@@ -7,18 +7,18 @@ import Screenshots from "./Screenshots.astro"
 <div class="hero">
 <div class="left">
   <h1>
-    <img src="/favicon.svg" alt="Check Web" width="64" />
-    <span class="web">Web</span>
-    <span class="check">Check</span>
+    <img src="/favicon.svg" alt="网站检查" width="64" />
+    <span class="web">网站</span>
+    <span class="check">检查</span>
   </h1>
   <div class="homepage-action-content">
-    <h2>We give you X-Ray<br />Vision for your Website</h2>
+    <h2>我们为您提供网站的<br />X光透视能力</h2>
     <h3>
-      In just 20 seconds, you can see
-      <span>what attackers already know</span>
+      只需20秒，您就能看到
+      <span>攻击者早已知道的信息</span>
     </h3>
     <form name="live-start" autocomplete="off" action="/check" class="live-start" id="live-start">
-      <label for="url">Enter a URL to start 👇</label>
+      <label for="url">输入网址开始 👇</label>
       <AnimatedInput />
       <AnimatedButton />
     </form>
@@ -29,16 +29,16 @@ import Screenshots from "./Screenshots.astro"
 
 <script>
   /**
-   * Form management actions (validation, submission, etc.)
-   * We just use normal, old school JavaScript for this
+   * 表单管理操作（验证、提交等）
+   * 我们使用普通的传统 JavaScript 来实现
    */
 
-  // Select the form and input elements from the DOM
+  // 从 DOM 中选择表单和输入元素
   const form = document.getElementById('live-start');
   const urlInput = document.getElementById('url-input') as HTMLInputElement;
     
-  // Submit Event - called when user submits form with a valid URL
-  // Gets and checks the URL, then redirects user to /check/:url
+  // 提交事件 - 当用户提交带有有效 URL 的表单时调用
+  // 获取并检查 URL，然后将用户重定向到 /check/:url
   form?.addEventListener('submit', (event) => {
     event.preventDefault();
     const url = urlInput.value.trim();
@@ -48,8 +48,8 @@ import Screenshots from "./Screenshots.astro"
     }
   });
   
-  // User presses enter, forgets to add protocol
-  // Will add https:// to the URL, and retry form submit
+  // 用户按下回车键但忘记添加协议
+  // 将为 URL 添加 https://，然后重新尝试提交表单
   urlInput?.addEventListener('keydown', (event) => {
     if (event.key === 'Enter') {
       const url = urlInput.value.trim();
@@ -87,7 +87,7 @@ import Screenshots from "./Screenshots.astro"
     }
     h1 {
       margin: 0;
-      fontis-size: 3em;
+      font-size: 3em;
       z-index: 5;
       display: flex;
       gap: 0.1rem;
