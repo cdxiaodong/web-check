@@ -25,5 +25,8 @@
     "env": {
       "PLATFORM": "vercel"
     }
+  },
+  "engines": {
+    "node": "22.x"
   }
 }
