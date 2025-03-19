@@ -16,12 +16,6 @@
       "dest": "/api/$1.js"
     }
   ],
-  "functions": {
-    "api/*.js": {
-      "maxDuration": 10,
-      "runtime": "nodejs20.x"
-    }
-  },
   "env": {
     "PLATFORM": "vercel",
     "CI": "false",
