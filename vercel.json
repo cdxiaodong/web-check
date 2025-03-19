@@ -8,15 +8,14 @@
   ],
   "functions": {
     "api/*.js": {
-      "maxDuration": 10,
-      "runtime": "nodejs18.x"
+      "maxDuration": 10
     }
   },
   "env": {
     "PLATFORM": "vercel",
     "CI": "false",
     "CHROME_PATH": "/usr/bin/chromium",
-    "NODE_VERSION": "18.x",
+    "NODE_VERSION": "21.x",
     "GOOGLE_CLOUD_API_KEY": "",
     "BUILT_WITH_API_KEY": "",
     "REACT_APP_SHODAN_API_KEY": "",
